@@ -120,18 +120,27 @@
   }
   function pede() { if (!pend) { pend = true; window.requestAnimationFrame(atualiza); } }
 
+  function sincroniza() {
+    // o botão sempre mostra o que o áudio está realmente fazendo
+    var tocando = !!ctx && ctx.state === 'running' && ligado;
+    botao.setAttribute('aria-pressed', tocando ? 'true' : 'false');
+    botao.title = tocando ? 'Desligar o som (M)' : 'Ligar o som (M)';
+  }
   function liga() {
-    if (!ctx) monta();
-    if (ctx.state === 'suspended') ctx.resume();
+    if (!ctx) { monta(); ctx.onstatechange = function () { if (ctx.state !== 'running' && ligado && !document.hidden) { ligado = false; } sincroniza(); }; }
     ligado = true; mede();
-    N.master.gain.setTargetAtTime(0.7, ctx.currentTime, 0.4);
-    botao.setAttribute('aria-pressed', 'true');
-    pede();
+    var depois = function () {
+      if (!ligado) return;
+      N.master.gain.setTargetAtTime(0.7, ctx.currentTime, 0.4);
+      sincroniza(); pede();
+    };
+    if (ctx.state === 'suspended') ctx.resume().then(depois, function () { ligado = false; sincroniza(); });
+    else depois();
   }
   function desliga() {
     ligado = false;
     if (ctx) N.master.gain.setTargetAtTime(0, ctx.currentTime, 0.25);
-    botao.setAttribute('aria-pressed', 'false');
+    sincroniza();
   }
   botao.addEventListener('click', function () { if (ligado) desliga(); else liga(); });
   window.addEventListener('scroll', pede, { passive: true });

@@ -112,3 +112,15 @@ VERSÃO 6 · IMAGENS REAIS EM ALTA, PAINEL DE MISSÕES, SOM
   Zumbido grave que muda de capítulo, motor na ignição, sopro com a rolagem, brilho no espaço profundo.
   Carregamento: barra determinada com percentual. Imagem de compartilhamento: assets/og.jpg.
   Aviso técnico: replace() do JS trata "$$" como "$" no texto novo; ao automatizar edições, usar split/join.
+
+AUDITORIA E POLIMENTO FINAL (versão 7)
+  - Carregamento: "pronto" agora vem dos dados que realmente chegaram (buffer real), sem tempo fixo que libere a cena.
+    A busca do vídeo fica limitada ao trecho já carregado e se estende conforme o resto chega. Percentual real na
+    abertura e em cada cena; o texto de carregamento é esvaziado quando a cena fica pronta. Celulares recebem um
+    play mudo para o navegador começar a baixar.
+  - Som: o botão mostra o estado real do áudio (se o navegador bloquear, ele não fica "ligado" à toa).
+  - Movimento reduzido: a faixa gigante também fica parada.
+  - Edição: a seção "Em números" saiu (repetia o que os cards e painéis já dizem). Navegação e rodapé ajustados.
+  - Encerramento: assinatura "Conceito criativo · Connect Alpha" discreta dentro da cena de Marte.
+  - Celular: legenda, assinatura e botão de Marte empilhados sem sobreposição; sem desfoque de fundo (backdrop-filter).
+  - Compartilhamento: og:image e og:url com endereço absoluto (nasa-bay-kappa.vercel.app).

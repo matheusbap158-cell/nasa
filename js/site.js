@@ -384,6 +384,7 @@
     })
       .fromTo('#fro-texto', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.16 }, 0.6)
       .fromTo('#fro-leg', { opacity: 0 }, { opacity: 1, duration: 0.12 }, 0.74)
+      .fromTo('#fro-assina', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.1 }, 0.84)
       .fromTo('#fro-fade', { opacity: 0 }, { opacity: 1, duration: 0.14 }, 0.86)
       .to({}, { duration: 0 }, 1);
     ScrollTrigger.create({

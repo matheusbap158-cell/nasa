@@ -185,3 +185,24 @@ html.cursor-on dialog.missao a,html.cursor-on dialog.missao button{cursor:pointe
 @media (max-width:1780px){.topo-cap{display:none}.topo-marca{margin-right:auto}}
 @media (max-width:1360px){.som .som-txt,.tour span{display:none}.som,.tour{padding:0 var(--e-3)}}
 @media (max-width:1150px){.topo-nav{gap:14px}.topo-nav a{letter-spacing:.14em}}
+
+/* assinatura discreta no encerramento da jornada */
+.fro-assina{position:absolute;z-index:3;right:var(--margem);bottom:max(30px,5svh);margin:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px;
+  font-weight:800;font-stretch:125%;font-size:.8125rem;letter-spacing:.3em;text-transform:uppercase;color:var(--c-texto);opacity:0}
+.fro-assina span{font-family:var(--mono);font-size:.625rem;font-weight:500;letter-spacing:.24em;color:var(--c-texto-3)}
+@media (max-width:900px){.fro-assina{right:auto;left:var(--margem);align-items:flex-start;bottom:calc(max(30px,5svh) + 64px)}}
+html.sem-mov .fro-assina{opacity:1}
+
+/* celulares: sem desfoque de fundo (caro) e com fundo um pouco mais sólido */
+@media (pointer:coarse),(max-width:820px){
+  .card,.stat,.cta,.topo.zona-site,.missao::backdrop{-webkit-backdrop-filter:none;backdrop-filter:none}
+  .card{background-color:rgba(8,15,32,.86)}
+  .cta{background-color:rgba(10,18,38,.9)}
+}
+
+/* celular: botão, assinatura e legenda de Marte empilhados, sem se sobrepor */
+@media (max-width:900px){
+  .fro-seguir{bottom:max(22px,3svh)}
+  .fro-assina{bottom:calc(max(22px,3svh) + 64px)}
+  .fro-leg{bottom:calc(max(22px,3svh) + 64px + 58px);right:var(--margem);max-width:none}
+}

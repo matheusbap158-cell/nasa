@@ -141,7 +141,7 @@
     var v = y - ultimoY; ultimoY = y;
     vel = vel * 0.8 + v * 0.2;
     var skew = clamp(vel * 0.35, -9, 9);
-    linhas.forEach(function (l, i) {
+    if (!reduzir) linhas.forEach(function (l, i) {
       var dir = i % 2 ? 1 : -1;
       var meio = l.scrollWidth / 2 || 1;
       var x = ((y * 0.45 * dir) % meio);

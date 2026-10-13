@@ -64,7 +64,10 @@
     video.currentTime = quer;
   }
   function buscar(t) {
-    quer = t;
+    desejado = t;
+    var lim = typeof limiteBuffer === 'function' ? limiteBuffer() : 0;
+    var completo = typeof fracaoBuffer === 'function' && fracaoBuffer() >= 0.985;
+    quer = (!completo && lim > 0) ? Math.min(t, Math.max(0, lim - 0.12)) : t;
     if (!ocupado) bombear();
   }
   video.addEventListener('seeked', function () {
@@ -101,48 +104,60 @@
     relogio.classList.toggle('zero', T >= -0.05 && T < 0.8);
   }
 
-  // ---------- carregamento ----------
-  var liberado = false;
-  var limite = setTimeout(function () {
-    if (!liberado) {
-      // rede lenta: o título precisa estar legível mesmo sem o vídeo, e a mensagem deixa de cobrir a tela
+  // ---------- carregamento: "pronto" vem dos dados que realmente chegaram, nunca de um tempo fixo ----------
+  var liberado = false, falhou = false, desejado = 0;
+  var pctEl = document.getElementById('carregando-pct');
+  function duracaoReal() { return duracao || (isFinite(video.duration) ? video.duration : 0); }
+  function limiteBuffer() {            // até onde já existem quadros: a busca não passa disso enquanto o resto chega
+    var d = duracaoReal();
+    if (!d || !video.buffered.length) return 0;
+    return Math.min(d, video.buffered.end(video.buffered.length - 1));
+  }
+  function fracaoBuffer() { var d = duracaoReal(); return d ? limiteBuffer() / d : 0; }
+  function checa() {
+    if (liberado || falhou) return;
+    var f = fracaoBuffer(), pct = Math.round(f * 100);
+    if (liberado && f < 0.985) buscar(desejado);
+    carregando.style.setProperty('--pct', pct + '%');
+    if (pctEl) pctEl.textContent = pct + '%';
+    // pronto: tudo em buffer, ou o bastante para começar com o restante chegando
+    if (f >= 0.985 || (video.readyState >= 3 && f >= 0.35)) aoTerQuadro();
+  }
+
+  // aviso informativo (não libera nada): rede lenta, o título precisa estar legível mesmo sem o vídeo
+  var avisoLento = setTimeout(function () {
+    if (!liberado && !falhou) {
       carregando.classList.add('aviso');
       carregandoTxt.textContent = 'O vídeo está demorando para carregar…';
       entrada();
     }
   }, 9000);
+  var sonda = setInterval(checa, 250);   // "progress" é esparso; isto só lê o buffer real para o percentual
 
   function aoTerQuadro() {
+    if (liberado) return;
     liberado = true;
-    clearTimeout(limite);
+    clearTimeout(avisoLento); clearInterval(sonda);
     carregando.classList.remove('aviso');
     carregando.classList.add('fim');
     entrada();
+    buscar(desejado);
   }
   function aoFalhar() {
-    clearTimeout(limite);
+    if (liberado || falhou) return;
+    falhou = true;
+    clearTimeout(avisoLento); clearInterval(sonda);
     carregando.classList.remove('fim');
     carregando.classList.add('aviso');
     carregandoTxt.textContent = 'Não foi possível carregar o vídeo.';
     entrada();
     modoSimples('erro');
   }
-  // só libera a cena quando o vídeo todo está pronto (cópia só com quadros-chave, ~5 MB): sem isso, rolar rápido
-  // logo no início faz buscas em trechos que ainda não chegaram e o vídeo "atrasa"
-  video.addEventListener('canplaythrough', aoTerQuadro);
-  var pctEl = document.getElementById('carregando-pct');
-  video.addEventListener('progress', function () {
-    if (duracao && video.buffered.length) {
-      var f = Math.min(1, video.buffered.end(video.buffered.length - 1) / duracao);
-      carregando.style.setProperty('--pct', Math.round(f * 100) + '%');
-      if (pctEl) pctEl.textContent = Math.round(f * 100) + '%';
-      if (f * duracao >= duracao - 0.15) aoTerQuadro();
-    }
+  ['loadedmetadata', 'loadeddata', 'progress', 'canplay', 'canplaythrough', 'suspend'].forEach(function (ev) {
+    video.addEventListener(ev, checa);
   });
-  // rede lenta, ou navegador que só carrega o vídeo depois de um toque (iOS): com os metadados já dá para liberar
-  setTimeout(function () { if (!liberado && video.readyState >= 1) aoTerQuadro(); }, 12000);
-  // nada chegou: avisa e deixa a página utilizável, sem prender o visitante na tela de carregamento
-  setTimeout(function () { if (!liberado) aoFalhar(); }, 25000);
+  // nem os metadados chegaram: falha de verdade (a página segue utilizável)
+  setTimeout(function () { if (!liberado && video.readyState < 1) aoFalhar(); }, 25000);
   video.addEventListener('error', aoFalhar);
   // com mais de uma fonte, só a última falhar significa que nada carregou
   var fontes = video.querySelectorAll('source');
@@ -228,6 +243,7 @@
   }
   if (video.readyState >= 1) aoTerMetadados();
   else video.addEventListener('loadedmetadata', aoTerMetadados, { once: true });
+  video.addEventListener('loadedmetadata', function () { if (toqueFino) destravar(); }, { once: true });
   if (video.readyState >= 4) aoTerQuadro();
 
   // iOS/Android: o vídeo só aceita busca depois de um gesto; faz um play/pause imediato

@@ -20,7 +20,11 @@
 
     function marca(estado) {
       cfg.secao.setAttribute('data-video', estado);
-      if (aviso) aviso.classList.toggle('on', estado === 'carregando');
+      if (aviso) {
+        aviso.classList.toggle('on', estado === 'carregando');
+        // só existe texto enquanto há o que dizer (leitores de tela não devem ouvir "carregando" depois de pronto)
+        aviso.textContent = estado === 'carregando' ? 'Carregando a cena…' : '';
+      }
     }
 
     function bombear() {
@@ -33,9 +37,22 @@
       }
       v.currentTime = quer;
     }
+    function limite() {
+      if (!duracao || !v.buffered.length) return 0;
+      return Math.min(duracao, v.buffered.end(v.buffered.length - 1));
+    }
     function aplicar() {
-      quer = Math.max(0, Math.min(1, prog)) * Math.max(0, duracao - FOLGA);
+      var alvo = Math.max(0, Math.min(1, prog)) * Math.max(0, duracao - FOLGA);
+      var lim = limite();
+      // enquanto o restante chega, a busca não passa do que já está em buffer
+      quer = (duracao && lim < duracao - 0.15 && lim > 0) ? Math.min(alvo, Math.max(0, lim - 0.12)) : alvo;
       if (!ocupado) bombear();
+    }
+    function checa() {
+      if (pronto || falhou || !duracao) return;
+      var f = limite() / duracao, pct = Math.round(f * 100);
+      if (aviso) aviso.textContent = 'Carregando a cena… ' + pct + '%';
+      if (f >= 0.985 || (v.readyState >= 3 && f >= 0.35)) aoTerTudo();
     }
     v.addEventListener('seeked', function () {
       ocupado = false;
@@ -56,6 +73,8 @@
       ultimo = -1;
       aplicar();
       if (cfg.aoPronto) cfg.aoPronto();
+      // continua acompanhando o restante do buffer para liberar toda a extensão do vídeo
+      var resto = setInterval(function () { if (!duracao || limite() >= duracao - 0.15) { clearInterval(resto); aplicar(); } else aplicar(); }, 400);
     }
     function aoFalhar() {
       if (pronto || falhou) return;
@@ -79,15 +98,20 @@
       v.addEventListener('loadedmetadata', function () {
         if (isFinite(v.duration) && v.duration > 0) duracao = v.duration;
       });
-      v.addEventListener('canplaythrough', aoTerTudo);
-      v.addEventListener('progress', function () {
-        if (duracao && v.buffered.length && v.buffered.end(v.buffered.length - 1) >= duracao - 0.15) aoTerTudo();
-      });
-      // rede lenta ou navegador que só carrega depois de um toque: com os metadados já dá para liberar
-      setTimeout(function () { if (!pronto && v.readyState >= 1) aoTerTudo(); }, 14000);
-      setTimeout(function () { if (!pronto) aoFalhar(); }, 40000);
+      ['loadeddata', 'progress', 'canplay', 'canplaythrough', 'suspend'].forEach(function (ev) { v.addEventListener(ev, checa); });
+      // o evento "progress" é esparso: esta leitura só confere o buffer real (e para ao ficar pronto)
+      var sonda = setInterval(function () { if (pronto || falhou) clearInterval(sonda); else checa(); }, 250);
+      // nem os metadados chegaram: falha de verdade
+      setTimeout(function () { if (!pronto && v.readyState < 1) aoFalhar(); }, 40000);
       v.preload = 'auto';
       v.load();
+      // celulares só carregam depois de um play mudo: pede já, sem som e sem aparecer
+      if (window.matchMedia('(pointer:coarse)').matches) {
+        v.addEventListener('loadedmetadata', function () {
+          var p = v.play();
+          if (p && p.then) p.then(function () { if (!v.controls) v.pause(); }, function () {});
+        }, { once: true });
+      }
     }
 
     // baixa só quando a cena está perto
