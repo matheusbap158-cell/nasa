@@ -1,0 +1,26 @@
+# material de trabalho (originais, capturas e testes): ficam só no computador
+Imagens/
+Novos vídeos/
+Novo material/
+
+# imagens antigas que o site não usa mais (capturas sem crédito verificado)
+assets/img/campo-estelar.jpg
+assets/img/carenagem.jpg
+assets/img/eclipse-total.jpg
+assets/img/galaxia-borda.jpg
+assets/img/galaxia-espiral.jpg
+assets/img/galaxias.jpg
+assets/img/iss-paineis.jpg
+assets/img/lua-eclipse.jpg
+assets/img/marte.jpg
+assets/img/montagem-a.jpg
+assets/img/montagem-b.jpg
+assets/img/nebulosa-*.jpg
+assets/img/sala-limpa.jpg
+assets/img/terra-lua.jpg
+assets/img/terra-noite.jpg
+assets/img/astronauta.jpg
+
+# arquivos de sistema
+Thumbs.db
+.DS_Store

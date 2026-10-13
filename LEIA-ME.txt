@@ -1,0 +1,114 @@
+NASA · EXPLORAÇÃO ESPACIAL · CONCEITO CONNECT ALPHA
+Projeto conceitual independente. Não é oficial, não tem patrocínio nem aprovação da NASA.
+Feito em 13/10/2026 (versão 2 no mesmo dia, com os 3 vídeos novos). Só local (sem git, sem publicação).
+
+COMO VER
+  node "_ferramentas/preview-local.mjs" "4. Meus Clientes/2. Demos e propostas/nasa" 8793
+  (rodar da pasta raiz "Connect Alpha") e abrir http://localhost:8793
+
+ESTRUTURA
+  index.html            página única, cinco capítulos
+  css/style.css         base, sistema visual e capítulo 01
+  css/capitulos.css     capítulos 02 a 05, revelações
+  css/sistema.css       SISTEMA DE DESIGN: tokens (cor, tipografia, espaço, forma, movimento) e componentes
+                        (botões, chips, cards, números, linha do tempo, acordeão, CTA, cabeçalho, rodapé)
+  design-system.html    página que mostra os tokens e componentes ao vivo (link no rodapé e no CTA)
+  js/pagina.js          menu mobile, barra de progresso, contadores, linha do tempo, spotlight dos cards
+  css/luz.css           LUZ E SOMBRA (versão 4): vinheta global, grão de filme, névoa cósmica com paralaxe, sombras longas
+                        nos cards, brilho da ignição, "vazio" que fecha na subida, luz que segue o cursor.
+                        Aditivo: remover o arquivo (e o link) deixa o site funcionando, só mais plano.
+  js/cena.js            capítulo 01: vídeo controlado pela rolagem + relógio da missão
+  js/scrub.js           cenas de vídeo reutilizáveis (02, 03b, 05): carregamento preguiçoso + busca por quadro
+  js/site.js            estrelas (canvas), navegação e capítulos 02 a 05
+  vendor/               GSAP 3.12.5 + ScrollTrigger (cópia local)
+  assets/video/         foguete, subida, nebulosa e marte: cada um em versão desktop (3 a 5 MB), celular (-m, 1,4 a 2,5 MB)
+                        e cartaz (-poster.jpg). Todos sem áudio e com todos os quadros como chave.
+  Novos vídeos/         ORIGINAIS dos 4 vídeos gerados no Flow (intocados). O "Rocket_climbing_into_space" ficou de fora.
+  Novo material/        capturas e ilustrações extras; só o astronauta foi usado (como ilustração conceitual)
+  assets/img/           imagens tratadas (cortadas 3% nas bordas para tirar marcas de interface)
+  Rocket_launching_from_pad_20261013071523.mp4   ORIGINAL, intocado; entra como reserva no <video>
+  Imagens/, Logo/       materiais originais, intocados
+
+COMO O VÍDEO FUNCIONA
+  O original tem um único quadro-chave (a busca por posição engasga). As cópias foguete-scrub*.mp4 foram
+  regravadas com todos os quadros como chave (-g 1), sem áudio. A rolagem só define currentTime; o vídeo
+  nunca toca sozinho. O celular recebe a versão menor. Movimento reduzido: quadro parado + botão Reproduzir.
+  O relógio T-00:01.0 usa o tempo do próprio vídeo (T-0 = 1,0 s, quando a ignição aparece).
+
+SITE EM VOLTA DA JORNADA (versão 3)
+  Cabeçalho com navegação (Jornada, Missões, Linha do tempo, Em números, Perguntas) + botão de contato,
+  indicador do capítulo atual e barra de progresso. Depois do capítulo 05: Missões (6 cards com imagens
+  oficiais da NASA), Linha do tempo (8 marcos), Em números (5), Perguntas (6, acordeão), Contato (CTA + 3
+  serviços) e rodapé completo. Fatos conferidos em páginas da NASA (Artemis II: lançamento 1 abr 2026, pouso 10 abr;
+  Webb 25 dez 2021, espelho 6,5 m; Hubble 24 abr 1990; ISS desde 2 nov 2000; Perseverance 18 fev 2021; Voyager 1
+  5 set 1977, interestelar ago 2012). Imagens em assets/img/missoes/ (créditos em _creditos.json).
+  Efeito extra: ao rolar rápido, as estrelas ganham rastro ("dobra"); some sozinho ao parar.
+
+CAPÍTULOS
+  01 Ignição          vídeo na rolagem, título NASA Exploração Espacial, "Além do conhecido."
+  02 Deixe a Terra   VÍDEO da subida pelas nuvens até o espaço, altitude 0 a 420 km sincronizada, nascer do sol real (foto NASA)
+  03 Rumo ao desconhecido  (a) última vista sobre o Brasil, Lua, eclipse; (b) VÍDEO "Por dentro de uma nebulosa" (arte IA);
+                          (c) "O universo, como ele é": nebulosas e galáxias reais em profundidade
+  04 A humanidade além da Terra   composição editorial com as fotos de bastidores + ilustração de astronauta
+  05 A próxima fronteira       VÍDEO da aproximação de Marte na rolagem, assinatura da Connect Alpha, aviso de conceito independente
+
+RECURSOS ADICIONAIS (fora das capturas fornecidas)
+  Duas fotos do acervo público da NASA (images.nasa.gov), baixadas em tamanho "large" (1920 px):
+    assets/img/orbita-brasil.jpg    ID iss072e340644, Estação Espacial Internacional, 18/11/2024
+    assets/img/orbita-pacifico.jpg  ID iss073e1068530, Estação Espacial Internacional, 13/11/2025
+  Fontes: Archivo e IBM Plex Mono (Google Fonts). GSAP/ScrollTrigger (licença padrão GSAP, uso gratuito).
+
+[A CONFIRMAR] ANTES DE QUALQUER USO PÚBLICO
+  - Créditos individuais das 19 imagens que vieram como captura de tela (origem provável: perfis oficiais
+    da NASA, ESA e CSA no Instagram, mas não verificado). Por isso o rodapé diz "créditos individuais em
+    levantamento". Fotos de naves de outras empresas e brinquedos de gravidade zero foram deixadas de fora de
+    propósito.
+  - Uso do emblema da NASA: regras de uso da NASA pedem que não sugira apoio ou endosso. Está só no aviso.
+  - Resolução: as capturas têm 600 a 840 px; por isso aparecem com tamanho moderado e máscara suave, nunca
+    em tela cheia. Para uso em campanha, trocar por originais em alta.
+  - Vídeo é gerado por IA (Google Flow): detalhes do foguete e da torre não correspondem a nenhum veículo real.
+    Não afirmar que é um lançamento real.
+
+ORIGEM DAS MÍDIAS (transparência)
+  Reais: fotos da NASA (órbita) e as capturas de telescópios/missões.
+  Geradas por IA: os 4 vídeos (foguete, subida, nebulosa, Marte) e a ilustração do astronauta. A página avisa
+  "animação gerada por IA" / "ilustração conceitual" onde isso aparece.
+
+NÃO IMPLEMENTADO
+  - Áudio (os originais têm trilha, mas áudio não acompanha a rolagem; as cópias são mudas).
+  - Teste em iPhone/Android reais: só validado em desktop e em iframe de 390 x 844.
+  - Publicação (Vercel/GitHub): pendente de OK.
+
+TRANSIÇÕES ENTRE CENAS (versão 4.1)
+  Regra: nenhuma cena termina em corte seco; cada uma emerge do vazio e volta a ele. Implementado em
+  css/luz.css (blocos "emendas entre cenas") e js/site.js (função bordas): degradês para o preto por dentro
+  das cenas de vídeo (sobem e descem com a rolagem) e por fora (pseudo-elementos ::before/::after das seções).
+  01 para 02: o fim do foguete se dissolve no azul-noite onde começa a subida (leave::before).
+
+TROCA DE CENAS DO CAPÍTULO 03 (versão 4.2)
+  Saíram: vídeo da nebulosa (arte IA) e a seção de imagens de telescópios (capturas de baixa resolução).
+  Entraram, cada um em uma seção: "A Terra fica pequena" (assets/video/afastar*) e "Uma sonda diante de Saturno"
+  (assets/video/saturno*), ambos gerados por IA e identificados na página. Originais em "Novos vídeos/".
+  Imagens de telescópios continuam nos cards de missões (Webb e Hubble, com crédito).
+  Ajustes de desempenho: com uma cena de vídeo cobrindo a tela, o canvas de estrelas e a névoa são desligados;
+  o gsap não "desacelera" em aparelhos lentos (lagSmoothing 0).
+
+CINEMA E INTERAÇÃO (versão 5)
+  css/efeitos.css + js/efeitos.js (aditivos): acento de cor por capítulo (--dyn), brilho no título de abertura,
+  molduras de visor, faixa anamórfica + tremor de câmera na ignição, linhas de velocidade na subida (canvas),
+  cursor próprio, botões magnéticos, cards com tilt 3D, faixa gigante de nomes, manifesto palavra por palavra,
+  título com degradê, aurora no CTA, marca gigante no rodapé e MODO AUTOMÁTICO.
+  Para gravar vídeo: botão "Automático" no cabeçalho (ou tecla T) rola o site sozinho (300 px/s nos vídeos,
+  620 px/s no resto; qualquer gesto interrompe). Tecla H esconde cabeçalho/interface (modo limpo).
+
+VERSÃO 6 · IMAGENS REAIS EM ALTA, PAINEL DE MISSÕES, SOM
+  Imagens: as capturas de tela fracas saíram. Agora toda fotografia vem do acervo público da NASA em 1920 px,
+  com ID e crédito (assets/img/hd/, assets/img/missoes/, créditos em _creditos.json): Artemis II (6 fotos da
+  tripulação), ISS (2 caminhadas espaciais), Webb (espelho em sala limpa), Terra à noite (ISS). Isso resolve a
+  pendência de créditos individuais. Sobrou o emblema da NASA (Logo/), usado só no aviso.
+  Painel de missões: clicar num card abre um painel com fatos verificados (dialog nativo, foco preso, Esc fecha,
+  setas trocam de missão). O link para a NASA continua dentro do painel e é a rede de segurança sem JavaScript.
+  Som: js/som.js, trilha 100% sintetizada pelo Web Audio (sem arquivos, sem direitos). Botão "Som" ou tecla M.
+  Zumbido grave que muda de capítulo, motor na ignição, sopro com a rolagem, brilho no espaço profundo.
+  Carregamento: barra determinada com percentual. Imagem de compartilhamento: assets/og.jpg.
+  Aviso técnico: replace() do JS trata "$$" como "$" no texto novo; ao automatizar edições, usar split/join.

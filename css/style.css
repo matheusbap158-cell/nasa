@@ -1,0 +1,133 @@
+/* NASA Space Exploration · conceito Connect Alpha
+   Base, sistema visual e o capítulo 01 (vídeo controlado pela rolagem). Capítulos 02 a 05 em capitulos.css. */
+:root{
+  --void:#02040a;
+  --deep:#0a1b3c;
+  --branco:#f2f5fb;
+  --suave:rgba(242,245,251,.72);
+  --tenue:rgba(242,245,251,.42);
+  --linha:rgba(242,245,251,.14);
+  --azul:#7db4ff;
+  --ambar:#ffc27a;
+  --fonte:"Archivo","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --margem:clamp(20px,5vw,80px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{background:var(--void);color-scheme:dark;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--void);color:var(--branco);font-family:var(--fonte);line-height:1.45;overflow-x:hidden}
+img{max-width:100%}
+figure{margin:0}
+a{color:inherit}
+
+/* campo de estrelas fixo atrás de tudo; as seções são "position:relative" (sem z-index) para as placas
+   poderem se misturar com ele */
+#estrelas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+main,footer,section{position:relative}
+
+/* ---------- peças do sistema ---------- */
+.exp{font-stretch:125%}
+.kicker{margin:0 0 clamp(14px,2.2vh,26px);font-family:var(--mono);font-size:clamp(.6875rem,.85vw,.8125rem);font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--suave)}
+.kicker::before{content:"";display:inline-block;width:26px;height:1px;background:var(--azul);vertical-align:middle;margin-right:14px}
+.h2{margin:0;font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:.92;font-size:clamp(2.2rem,6.4vw,6.6rem)}
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln>span{display:block}
+.lead{margin:clamp(18px,3vh,36px) 0 0;max-width:30ch;font-size:clamp(1.0625rem,1.55vw,1.5rem);line-height:1.38;font-weight:400;color:var(--branco)}
+.peq{margin:14px 0 0;max-width:38ch;font-size:clamp(.9375rem,1.05vw,1.0625rem);color:var(--suave)}
+.mono-t{font-family:var(--mono);font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--branco)}
+
+.pular{position:fixed;left:16px;top:-80px;z-index:60;padding:12px 18px;background:var(--branco);color:#02040a;font-weight:500;text-decoration:none;border-radius:2px}
+.pular:focus{top:16px;outline:2px solid var(--azul);outline-offset:3px}
+
+/* navegação: aparece depois da abertura */
+.topo{position:fixed;inset:0 0 auto 0;z-index:40;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 var(--margem);
+  background:linear-gradient(180deg,rgba(2,4,10,.82),rgba(2,4,10,0));
+  transform:translateY(-100%);visibility:hidden;transition:transform .45s var(--ease),visibility 0s linear .45s}
+.topo.on{transform:none;visibility:visible;transition:transform .45s var(--ease),visibility 0s}
+.topo a{text-decoration:none}
+.topo-marca{font-weight:800;font-size:.75rem;letter-spacing:.26em;text-transform:uppercase;white-space:nowrap;font-stretch:125%}
+.topo-marca span{color:var(--azul)}
+.caps{display:flex;align-items:center;gap:clamp(14px,2.2vw,34px)}
+.caps a{display:flex;align-items:baseline;gap:8px;padding:8px 0;color:var(--tenue);border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.caps b{font-family:var(--mono);font-size:.6875rem;font-weight:500;letter-spacing:.12em}
+.caps span{font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width .4s var(--ease),opacity .3s}
+.caps a:hover,.caps a[aria-current=true]{color:var(--branco);border-bottom-color:var(--azul)}
+.caps a[aria-current=true] span,.caps a:hover span,.caps a:focus-visible span{max-width:260px;opacity:1}
+.topo a:focus-visible,.btn:focus-visible{outline:2px solid var(--azul);outline-offset:4px}
+
+/* ---------- capítulo 01: o vídeo ocupa a tela e o progresso dele acompanha a rolagem ---------- */
+.cena{height:520vh;height:520svh;background:var(--void)}
+.palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--void)}
+.video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;background:var(--void);display:block}
+
+/* escurece o céu do canto esquerdo (onde ficam os textos) e a base, sem tocar no foguete */
+.vinheta{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(2,4,10,.82) 0%,rgba(2,4,10,.62) 22%,rgba(2,4,10,.28) 40%,rgba(2,4,10,0) 56%),
+    radial-gradient(60% 55% at 12% 14%,rgba(2,4,10,.55),rgba(2,4,10,0) 70%),
+    linear-gradient(0deg,rgba(2,4,10,.6) 0%,rgba(2,4,10,0) 24%)}
+
+.intro{position:absolute;left:var(--margem);top:max(11svh,76px);width:min(46vw,760px);will-change:opacity,transform}
+.titulo{margin:0;font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:-.03em;font-stretch:125%}
+.titulo .nasa{font-size:clamp(3.4rem,10.4vw,10rem);letter-spacing:-.04em}
+.titulo .sub{font-size:clamp(1.1rem,2.55vw,2.5rem);line-height:1.02;letter-spacing:-.005em;font-weight:600;color:var(--suave)}
+.titulo .sub:first-of-type{margin-top:clamp(10px,1.6vh,20px)}
+html.anima #kicker{opacity:0}
+html.anima .titulo .ln>span{transform:translateY(108%)}
+
+.beat{position:absolute;left:var(--margem);top:max(11svh,76px);margin:0;opacity:0;font-weight:800;font-stretch:125%;text-transform:uppercase;letter-spacing:-.02em;line-height:.98;font-size:clamp(1.6rem,3.7vw,3.8rem);will-change:opacity,transform}
+.beat-n{display:block;margin-bottom:clamp(12px,2vh,22px);font-family:var(--mono);font-size:.75rem;font-weight:500;letter-spacing:.3em;color:var(--azul)}
+
+/* relógio da missão: o tempo mostrado é o do próprio vídeo */
+.relogio{position:absolute;left:var(--margem);bottom:max(26px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:6px;font-family:var(--mono)}
+.rel-t{font-size:clamp(1.25rem,2.3vw,2.2rem);font-weight:500;letter-spacing:.04em;font-variant-numeric:tabular-nums;color:var(--branco)}
+.rel-s{font-size:.6875rem;letter-spacing:.26em;text-transform:uppercase;color:var(--suave)}
+.relogio.zero .rel-t{color:var(--ambar)}
+
+.indicador{position:absolute;left:50%;bottom:max(26px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--mono);font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--suave);white-space:nowrap}
+.indicador i{display:block;width:1px;height:34px;background:linear-gradient(var(--branco),transparent);transform-origin:top;animation:descer 1.8s ease-in-out infinite}
+@keyframes descer{0%{transform:scaleY(0);opacity:0}30%{opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* a cor final do capítulo 01 é a cor inicial do céu do capítulo 02 */
+.cobre{position:absolute;inset:0;background:var(--deep);opacity:0;pointer-events:none}
+.trilho{position:absolute;right:0;top:0;bottom:0;width:2px;background:rgba(242,245,251,.08);z-index:3}
+.trilho i{display:block;width:100%;height:100%;background:var(--azul);transform:scaleY(0);transform-origin:50% 0}
+
+.carregando{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--void);z-index:5;font-family:var(--mono);font-size:.6875rem;letter-spacing:.32em;text-transform:uppercase;color:var(--suave);transition:opacity .6s ease,visibility .6s}
+.carregando i{display:block;width:120px;height:1px;background:rgba(242,245,251,.16);position:relative;overflow:hidden}
+.carregando i::after{content:"";position:absolute;inset:0;width:40%;background:var(--azul);animation:varre 1.2s ease-in-out infinite}
+@keyframes varre{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+.carregando.fim{opacity:0;visibility:hidden;pointer-events:none}
+.carregando.aviso i{display:none}
+.carregando.aviso{background:transparent;justify-content:flex-end;padding-bottom:max(26px,env(safe-area-inset-bottom));pointer-events:none}
+
+.reproduzir{position:absolute;right:var(--margem);bottom:max(26px,env(safe-area-inset-bottom));z-index:4;min-height:44px;padding:0 22px;border-radius:999px;border:1px solid rgba(242,245,251,.4);background:rgba(2,4,10,.55);color:var(--branco);font:inherit;font-size:.8125rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.reproduzir:hover{border-color:var(--azul)}
+.reproduzir:focus-visible{outline:2px solid var(--azul);outline-offset:3px}
+
+/* modo simples: sem vídeo preso na rolagem (movimento reduzido ou falha de carregamento) */
+.cena.simples{height:100vh;height:100svh}
+.cena.simples .palco{position:relative}
+.cena.simples .indicador,.cena.simples .relogio,.cena.simples .trilho,.cena.simples .cobre{display:none}
+.cena.simples .beat{opacity:1;top:auto;bottom:max(86px,12svh)}
+.cena.simples .intro{opacity:1}
+
+/* ---------- retrato: títulos no alto, foguete livre no centro ---------- */
+@media (max-aspect-ratio:1/1){
+  .intro{top:calc(max(7svh,60px) + env(safe-area-inset-top));right:var(--margem);width:auto}
+  .titulo .nasa{font-size:clamp(3.2rem,19vw,7rem)}
+  .titulo .sub{font-size:clamp(1rem,5.2vw,2rem)}
+  .beat{top:calc(max(7svh,60px) + env(safe-area-inset-top));right:var(--margem);font-size:clamp(1.5rem,7.2vw,3rem)}
+  .vinheta{background:
+    linear-gradient(180deg,rgba(2,4,10,.7) 0%,rgba(2,4,10,.3) 30%,rgba(2,4,10,0) 46%),
+    linear-gradient(0deg,rgba(2,4,10,.62) 0%,rgba(2,4,10,0) 22%)}
+  .caps span{display:none}
+}
+@media (max-width:640px){
+  .caps{gap:14px}
+  .topo-marca{font-size:.6875rem;letter-spacing:.2em}
+}
+@media (prefers-reduced-motion:reduce){
+  .indicador i,.carregando i::after{animation:none}
+}

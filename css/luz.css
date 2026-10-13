@@ -1,0 +1,128 @@
+/* LUZ E SOMBRA · camada de atmosfera
+   Tudo aqui é aditivo: remove-se este arquivo e o site continua funcionando, só mais plano.
+   Ideia: o espaço é escuro e silencioso; a luz é rara e vem de uma direção só (de cima e de dentro das imagens).
+   Por isso: bordas que escurecem, sombra longa sob os objetos, brilho só onde há fonte de luz e um grão fino
+   que tira a "limpeza digital" da tela. */
+
+/* ---------- camadas globais (nunca recebem clique) ---------- */
+.vinheta-global,.grao,.luz-cursor{position:fixed;pointer-events:none}
+.vinheta-global{inset:0;z-index:30;
+  background:
+    radial-gradient(130% 100% at 50% 46%,rgba(2,4,10,0) 52%,rgba(2,4,10,.42) 82%,rgba(2,4,10,.78) 100%)}
+.grao{inset:-60%;z-index:31;opacity:.075;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1.3 0 0 0 -.15'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation:grao 1.1s steps(7) infinite}
+@keyframes grao{
+  0%{transform:translate(0,0)}14%{transform:translate(-3%,2%)}28%{transform:translate(2%,-3%)}
+  42%{transform:translate(-2%,-1%)}57%{transform:translate(3%,2%)}71%{transform:translate(-1%,3%)}
+  85%{transform:translate(2%,-2%)}100%{transform:translate(0,0)}}
+/* luz que acompanha o cursor, como uma lanterna na escuridão */
+.luz-cursor{left:0;top:0;z-index:29;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;opacity:0;transition:opacity .7s ease;
+  background:radial-gradient(circle,rgba(125,180,255,.13) 0%,rgba(125,180,255,.06) 36%,rgba(125,180,255,0) 68%);will-change:transform}
+.luz-cursor.on{opacity:1}
+
+/* ---------- névoa cósmica: manchas enormes e quase invisíveis atrás do conteúdo ---------- */
+.nevoa{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.nevoa i{position:absolute;display:block;border-radius:50%;will-change:transform}
+.nevoa i:nth-child(1){left:-22vmax;top:-18vmax;width:78vmax;height:78vmax;background:radial-gradient(circle,rgba(94,72,214,.2),rgba(94,72,214,0) 66%)}
+.nevoa i:nth-child(2){right:-26vmax;top:26vh;width:86vmax;height:86vmax;background:radial-gradient(circle,rgba(36,104,255,.17),rgba(36,104,255,0) 66%)}
+.nevoa i:nth-child(3){left:12vw;bottom:-44vmax;width:92vmax;height:92vmax;background:radial-gradient(circle,rgba(255,150,92,.09),rgba(255,150,92,0) 64%)}
+
+/* ---------- sombras que dão peso às superfícies ---------- */
+.card,.stat{
+  background-image:linear-gradient(180deg,rgba(18,30,58,.55) 0%,rgba(6,11,24,.0) 55%);
+  box-shadow:
+    0 1px 0 rgba(175,208,255,.14) inset,
+    0 38px 90px -34px rgba(0,0,0,.95),
+    0 14px 30px -18px rgba(0,0,0,.8)}
+.card:hover,.card:focus-within{
+  box-shadow:
+    0 1px 0 rgba(175,208,255,.22) inset,
+    0 50px 110px -34px rgba(0,0,0,1),
+    0 0 90px -24px rgba(125,180,255,.34)}
+.card--destaque{box-shadow:
+    0 1px 0 rgba(175,208,255,.16) inset,
+    0 60px 120px -40px rgba(0,0,0,1),
+    0 0 120px -50px rgba(125,180,255,.4)}
+.cta{box-shadow:
+    0 1px 0 rgba(175,208,255,.18) inset,
+    0 70px 140px -50px rgba(0,0,0,1),
+    0 0 160px -60px rgba(125,180,255,.45)}
+.card-media::after{background:linear-gradient(0deg,rgba(2,4,10,.78),rgba(2,4,10,0) 52%),radial-gradient(120% 90% at 50% 40%,rgba(2,4,10,0) 55%,rgba(2,4,10,.45) 100%)}
+.btn--primario{box-shadow:0 10px 40px -14px rgba(125,180,255,.65)}
+.btn--primario:hover{box-shadow:0 14px 56px -12px rgba(125,180,255,.9)}
+.marco::before{box-shadow:0 0 14px rgba(125,180,255,.55)}
+.stat-num b{text-shadow:0 0 46px rgba(125,180,255,.38)}
+
+/* separadores que somem nas pontas em vez de cortar a tela */
+.secao + .secao{border-top:0}
+.secao + .secao::before{content:"";position:absolute;left:var(--margem);right:var(--margem);top:0;height:1px;background:linear-gradient(90deg,rgba(125,180,255,0),rgba(125,180,255,.22) 22%,rgba(125,180,255,.22) 78%,rgba(125,180,255,0))}
+
+/* ---------- títulos: um véu escuro por trás para separar da imagem ---------- */
+.titulo,.beat,.h2,.h3,.card-titulo{text-shadow:0 2px 34px rgba(0,0,0,.6),0 0 2px rgba(0,0,0,.25)}
+.lead,.peq{text-shadow:0 1px 18px rgba(0,0,0,.65)}
+
+/* ---------- cenas de vídeo: bordas que fecham e luz com fonte ---------- */
+.palco::after,.leave-palco::after,.neb-palco::after,.fro-palco::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(120% 100% at 50% 50%,rgba(2,4,10,0) 58%,rgba(2,4,10,.5) 100%)}
+.intro,.beat,.relogio,.indicador,.leave-topo,.alt,.leave-cred,.neb-texto,.fro-texto,.fro-leg,.fro-seguir{z-index:3}
+.ignicao{position:absolute;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen;will-change:opacity;
+  background:
+    radial-gradient(34% 26% at 50% 84%,rgba(255,190,110,.55),rgba(255,130,50,.2) 48%,rgba(0,0,0,0) 76%),
+    radial-gradient(60% 40% at 50% 100%,rgba(255,160,80,.28),rgba(0,0,0,0) 70%)}
+/* o vazio se fecha enquanto a Terra fica para trás */
+.leave-vazio{position:absolute;inset:0;pointer-events:none;opacity:0;will-change:opacity;
+  background:radial-gradient(70% 62% at 50% 46%,rgba(2,4,10,0) 30%,rgba(2,4,10,.7) 72%,rgba(2,4,10,.94) 100%)}
+.neb-sombra{background:
+  radial-gradient(55% 50% at 16% 82%,rgba(2,4,10,.78),rgba(2,4,10,0) 72%),
+  radial-gradient(120% 100% at 50% 50%,rgba(2,4,10,0) 50%,rgba(2,4,10,.6) 100%),
+  linear-gradient(0deg,rgba(2,4,10,.5) 0%,rgba(2,4,10,0) 30%)}
+.fro-sombra{background:
+  radial-gradient(55% 55% at 12% 14%,rgba(2,4,10,.65),rgba(2,4,10,0) 72%),
+  radial-gradient(130% 100% at 60% 55%,rgba(2,4,10,0) 52%,rgba(2,4,10,.6) 100%),
+  linear-gradient(0deg,rgba(2,4,10,.65) 0%,rgba(2,4,10,0) 26%)}
+
+/* ---------- acessibilidade e economia ---------- */
+@media (prefers-reduced-motion:reduce){.grao{animation:none}.luz-cursor{display:none}}
+@media (pointer:coarse){.luz-cursor{display:none}}
+@media (max-width:640px){.grao{opacity:.06}.nevoa i{opacity:.8}}
+
+/* ---------- emendas entre cenas: cada cena nasce do escuro e volta para ele ---------- */
+.borda{position:absolute;left:0;right:0;height:52vh;height:52svh;pointer-events:none;z-index:2;opacity:0;will-change:opacity}
+.borda--topo{top:0;opacity:1;
+  background:linear-gradient(180deg,#02040a 0%,#02040a 8%,rgba(2,4,10,.94) 20%,rgba(2,4,10,.78) 34%,rgba(2,4,10,.55) 50%,rgba(2,4,10,.32) 66%,rgba(2,4,10,.14) 82%,rgba(2,4,10,0) 100%)}
+.borda--base{bottom:0;
+  background:linear-gradient(0deg,#02040a 0%,#02040a 8%,rgba(2,4,10,.94) 20%,rgba(2,4,10,.78) 34%,rgba(2,4,10,.55) 50%,rgba(2,4,10,.32) 66%,rgba(2,4,10,.14) 82%,rgba(2,4,10,0) 100%)}
+html.sem-mov .borda{display:none}
+
+/* o fim do capítulo 01 se dissolve no azul-noite onde o capítulo 02 começa (sem faixa de cor entre os dois) */
+.leave::before{content:"";position:absolute;left:0;right:0;top:-48vh;top:-48svh;height:48svh;z-index:2;pointer-events:none;
+  background:linear-gradient(0deg,var(--deep) 0%,rgba(10,27,60,.94) 12%,rgba(10,27,60,.78) 28%,rgba(10,27,60,.52) 48%,rgba(10,27,60,.26) 68%,rgba(10,27,60,.09) 86%,rgba(10,27,60,0) 100%)}
+html.sem-mov .leave::before{display:none}
+
+/* a mesma fusão, do lado de fora de cada cena de vídeo: o conteúdo vizinho também escurece até o vazio */
+.neb::before,.fro::before,.unk::before{content:"";position:absolute;left:0;right:0;top:-36vh;top:-36svh;height:36svh;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,4,10,0) 0%,rgba(2,4,10,.1) 16%,rgba(2,4,10,.3) 34%,rgba(2,4,10,.56) 54%,rgba(2,4,10,.82) 76%,#02040a 100%)}
+.leave::after,.neb::after{content:"";position:absolute;left:0;right:0;bottom:-36vh;bottom:-36svh;height:36svh;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,#02040a 0%,rgba(2,4,10,.82) 24%,rgba(2,4,10,.56) 46%,rgba(2,4,10,.3) 66%,rgba(2,4,10,.1) 84%,rgba(2,4,10,0) 100%)}
+html.sem-mov .neb::before,html.sem-mov .fro::before,html.sem-mov .unk::before,html.sem-mov .leave::after,html.sem-mov .neb::after{display:none}
+
+/* sombra da cena de Saturno: texto embaixo à esquerda, planeta e sonda livres */
+.neb-sombra--base{background:
+  radial-gradient(60% 46% at 14% 100%,rgba(2,4,10,.82),rgba(2,4,10,0) 72%),
+  radial-gradient(120% 100% at 50% 50%,rgba(2,4,10,0) 52%,rgba(2,4,10,.55) 100%),
+  linear-gradient(0deg,rgba(2,4,10,.55) 0%,rgba(2,4,10,0) 30%)}
+
+/* economia: sem estrelas nem névoa por baixo de uma cena de vídeo em tela cheia */
+html.cena-cobre #estrelas,html.cena-cobre .nevoa{display:none}
+
+/* placas com foto real: bordas que se dissolvem no preto, sem o recorte circular */
+.placa--foto img{mix-blend-mode:normal;border-radius:2px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 90%,transparent 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 90%,transparent 100%),linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+  mask-composite:intersect;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.95)}
+.p-lua.placa--foto{width:clamp(280px,46vw,780px);right:6vw}
+.p-eclipse.placa--foto{width:clamp(280px,50vw,860px);left:5vw}
+@media (max-width:900px){.p-lua.placa--foto{width:88vw;right:4vw}.p-eclipse.placa--foto{width:92vw;left:2vw}}

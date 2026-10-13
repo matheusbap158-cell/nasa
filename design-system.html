@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#02040a">
+<title>Sistema de design · Observatório · Connect Alpha</title>
+<meta name="description" content="Tokens e componentes do conceito NASA · Exploração Espacial, da Connect Alpha: cores, tipografia, espaço, botões, cards, números, linha do tempo e perguntas.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/capitulos.css">
+<link rel="stylesheet" href="css/sistema.css">
+<link rel="stylesheet" href="css/luz.css">
+<link rel="stylesheet" href="css/efeitos.css">
+<style>
+  body{background:var(--void)}
+  .ds-topo{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--margem);
+    background:rgba(2,4,10,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--c-borda)}
+  .ds-topo a{text-decoration:none}
+  .ds-hero{padding:clamp(72px,14vh,160px) 0 clamp(40px,8vh,96px)}
+  .ds-hero .h2{font-size:clamp(2.4rem,7vw,7rem);max-width:12ch}
+  .ds-sec{padding-block:clamp(40px,8vh,88px);border-top:1px solid var(--c-borda)}
+  .ds-sec > .container > h2{margin:0 0 var(--e-2);font-weight:800;font-stretch:125%;font-size:var(--t-h3);letter-spacing:-.02em}
+  .ds-sec > .container > p.ds-intro{margin:0 0 var(--e-6);max-width:62ch;color:var(--c-texto-2)}
+  .ds-grade{display:grid;gap:clamp(12px,1.6vw,24px);grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr))}
+  .ds-cor{border:1px solid var(--c-borda);border-radius:var(--r-md);overflow:hidden;background:var(--c-superficie)}
+  .ds-cor i{display:block;height:84px;border-bottom:1px solid var(--c-borda)}
+  .ds-cor div{padding:var(--e-3) var(--e-4)}
+  .ds-cor b{display:block;font-size:var(--t-pequeno)}
+  .ds-cor code,.ds-code{font-family:var(--mono);font-size:var(--t-micro);color:var(--c-texto-3);letter-spacing:.04em}
+  .ds-linha{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e-4);padding:var(--e-5) 0;border-bottom:1px solid var(--c-borda)}
+  .ds-rotulo{flex:0 0 150px;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--c-texto-3)}
+  .ds-esp{display:block;height:14px;background:var(--c-acento);border-radius:2px}
+  .ds-tipo{margin:0}
+  .ds-demo-card{max-width:420px}
+  .ds-reg{display:grid;gap:var(--e-3);margin:0;padding:0;list-style:none}
+  .ds-reg li{padding:var(--e-4) var(--e-5);border:1px solid var(--c-borda);border-radius:var(--r-md);background:var(--c-superficie);color:var(--c-texto-2);line-height:1.55}
+  .ds-reg b{color:var(--c-texto)}
+</style>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="ds-topo">
+  <a class="topo-marca" href="index.html" style="color:var(--c-texto)">Connect <span style="color:var(--c-acento)">Alpha</span></a>
+  <a class="btn btn--secundario btn--sm" href="index.html"><span aria-hidden="true">←</span> Voltar ao site</a>
+</header>
+
+<main id="conteudo">
+  <section class="ds-hero">
+    <div class="container">
+      <p class="kicker">Sistema de design · v1</p>
+      <h1 class="h2 exp">Observatório.</h1>
+      <p class="lead">Os tokens e componentes que sustentam a jornada e o site: vidro escuro, bordas finas, tipografia expandida e telemetria em mono. O espaço é o protagonista; a interface só amplia.</p>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-principios">
+    <div class="container">
+      <h2 id="ds-principios">Princípios</h2>
+      <p class="ds-intro">Quatro regras que decidem o que entra e o que fica de fora.</p>
+      <ol class="ds-reg">
+        <li><b>O espaço é o protagonista.</b> Superfícies de vidro escuro, bordas finas e nenhuma sombra decorativa. A interface nunca compete com a imagem.</li>
+        <li><b>Uma cor, um acento quente.</b> O azul-atmosfera guia a atenção; o âmbar aparece só em estados de ignição e foco.</li>
+        <li><b>Títulos expandidos, telemetria em mono.</b> Texto corrido sempre confortável de ler, com no máximo 62 caracteres por linha.</li>
+        <li><b>Tudo funciona só com teclado.</b> Todo componente tem foco visível, respeita movimento reduzido e mantém contraste de leitura.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-cores">
+    <div class="container">
+      <h2 id="ds-cores">Cores</h2>
+      <p class="ds-intro">Paleta curta. As superfícies são translúcidas para deixar as estrelas aparecerem por trás.</p>
+      <div class="ds-grade">
+        <div class="ds-cor"><i style="background:#02040a"></i><div><b>Vazio</b><code>--c-vazio · #02040A</code></div></div>
+        <div class="ds-cor"><i style="background:#0a1b3c"></i><div><b>Azul-noite</b><code>--deep · #0A1B3C</code></div></div>
+        <div class="ds-cor"><i style="background:#f2f5fb"></i><div><b>Texto</b><code>--c-texto · #F2F5FB</code></div></div>
+        <div class="ds-cor"><i style="background:#7db4ff"></i><div><b>Atmosfera (acento)</b><code>--c-acento · #7DB4FF</code></div></div>
+        <div class="ds-cor"><i style="background:#ffc27a"></i><div><b>Ignição (quente)</b><code>--c-quente · #FFC27A</code></div></div>
+        <div class="ds-cor"><i style="background:rgba(8,15,32,.66)"></i><div><b>Superfície</b><code>--c-superficie · 66%</code></div></div>
+        <div class="ds-cor"><i style="background:rgba(125,180,255,.18)"></i><div><b>Borda</b><code>--c-borda · 18%</code></div></div>
+        <div class="ds-cor"><i style="background:rgba(125,180,255,.55)"></i><div><b>Borda em foco</b><code>--c-borda-forte · 55%</code></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-tipo">
+    <div class="container">
+      <h2 id="ds-tipo">Tipografia</h2>
+      <p class="ds-intro">Archivo (largura expandida para títulos, normal para texto) e IBM Plex Mono para rótulos e telemetria.</p>
+      <div class="ds-linha"><span class="ds-rotulo">Display · 800 · 125%</span><p class="ds-tipo h2 exp">Deixe a Terra.</p></div>
+      <div class="ds-linha"><span class="ds-rotulo">Título 3 · 700 · 125%</span><p class="ds-tipo h3 exp">Por dentro de uma nebulosa.</p></div>
+      <div class="ds-linha"><span class="ds-rotulo">Destaque · 400</span><p class="ds-tipo lead">Antes de qualquer lançamento existe uma sala silenciosa e uma lista de verificação.</p></div>
+      <div class="ds-linha"><span class="ds-rotulo">Texto · 400</span><p class="ds-tipo peq" style="max-width:56ch">Habitada sem interrupção desde 2 de novembro de 2000. Orbita a cerca de 400 km de altitude e dá uma volta na Terra em aproximadamente 90 minutos.</p></div>
+      <div class="ds-linha"><span class="ds-rotulo">Rótulo · mono 500</span><p class="ds-tipo mono-t">Distância da Terra · T+00:03.9</p></div>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-esp">
+    <div class="container">
+      <h2 id="ds-esp">Espaço, forma e movimento</h2>
+      <p class="ds-intro">Escala de 4 px em passos crescentes; raios pequenos para manter o ar técnico; movimentos curtos e com a mesma curva.</p>
+      <div class="ds-linha"><span class="ds-rotulo">--e-1 · 4</span><i class="ds-esp" style="width:4px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-2 · 8</span><i class="ds-esp" style="width:8px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-3 · 12</span><i class="ds-esp" style="width:12px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-4 · 16</span><i class="ds-esp" style="width:16px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-5 · 24</span><i class="ds-esp" style="width:24px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-6 · 32</span><i class="ds-esp" style="width:32px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-7 · 48</span><i class="ds-esp" style="width:48px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-8 · 72</span><i class="ds-esp" style="width:72px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">--e-9 · 112</span><i class="ds-esp" style="width:112px"></i></div>
+      <div class="ds-linha"><span class="ds-rotulo">Raios</span><span class="chip">4 px · pequeno</span><span class="chip">10 px · médio</span><span class="chip">18 px · grande</span><span class="chip">999 px · pílula</span></div>
+      <div class="ds-linha"><span class="ds-rotulo">Movimento</span><span class="ds-code">rápido .18 s · médio .4 s · lento .9 s · curva cubic-bezier(.2, .7, .2, 1)</span></div>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-btn">
+    <div class="container">
+      <h2 id="ds-btn">Botões e links</h2>
+      <p class="ds-intro">Um primário por tela. Todos têm altura mínima de 48 px (40 px na versão compacta) e foco visível em âmbar.</p>
+      <div class="ds-linha"><span class="ds-rotulo">Primário</span><a class="btn btn--primario" href="#conteudo">Quero uma experiência assim <span class="seta" aria-hidden="true">→</span></a><a class="btn btn--primario btn--sm" href="#conteudo">Compacto</a></div>
+      <div class="ds-linha"><span class="ds-rotulo">Secundário</span><a class="btn btn--secundario" href="#conteudo">Ver o sistema de design</a><button class="btn btn--secundario" type="button" disabled>Desativado</button></div>
+      <div class="ds-linha"><span class="ds-rotulo">Fantasma</span><a class="btn btn--fantasma" href="#conteudo">Ver mais</a></div>
+      <div class="ds-linha"><span class="ds-rotulo">Ícone</span><button class="btn btn--icone" type="button" aria-label="Anterior"><span aria-hidden="true">←</span></button><button class="btn btn--icone" type="button" aria-label="Próximo"><span aria-hidden="true">→</span></button></div>
+      <div class="ds-linha"><span class="ds-rotulo">Link com seta</span><a class="link-seta" href="https://www.nasa.gov/" target="_blank" rel="noopener">Ver no site da NASA <span class="seta" aria-hidden="true">↗</span></a></div>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-chips">
+    <div class="container">
+      <h2 id="ds-chips">Chips</h2>
+      <p class="ds-intro">Etiquetas de contexto: tipo, ano, estado.</p>
+      <div class="ds-linha"><span class="ds-rotulo">Variações</span><span class="chip">Neutro</span><span class="chip chip--acento">Acento</span><span class="chip chip--quente chip--ponto">Missão recente</span></div>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-cards">
+    <div class="container">
+      <h2 id="ds-cards">Cards</h2>
+      <p class="ds-intro">Imagem, chips, título que é o link (o card inteiro é clicável), texto curto e rodapé. O spotlight acompanha o cursor.</p>
+      <div class="ds-grade" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))">
+        <article class="card card--missao">
+          <div class="card-media">
+            <img src="assets/img/missoes/webb.jpg" width="1400" height="810" loading="lazy" decoding="async" alt="Penhascos cósmicos da Nebulosa de Carina em laranja e azul">
+            <span class="card-credito">NASA, ESA, CSA, STScI</span>
+          </div>
+          <div class="card-corpo">
+            <div class="card-chips"><span class="chip chip--acento">Observatório</span><span class="chip">2021</span></div>
+            <h3 class="card-titulo"><a href="https://science.nasa.gov/mission/webb/" target="_blank" rel="noopener">Telescópio Espacial James Webb</a></h3>
+            <p class="card-texto">Espelho de 6,5 metros formado por 18 segmentos hexagonais. Observa em infravermelho.</p>
+            <div class="card-rodape"><span class="rotulo">Infravermelho</span><span class="link-seta">Ver <span class="seta" aria-hidden="true">↗</span></span></div>
+          </div>
+        </article>
+        <div class="stat">
+          <p class="stat-num"><b>6,5</b><span>m</span></p>
+          <p class="stat-txt">Componente de número: valor grande em expandido, unidade em mono e uma frase de contexto.</p>
+        </div>
+        <div class="marco" style="border-top:1px solid var(--c-borda)">
+          <span class="marco-ano">1969</span><span class="marco-data">20 de julho</span>
+          <h3>Apollo 11 chega à Lua</h3><p>Componente de linha do tempo: ano, data em mono, título e uma frase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-faq">
+    <div class="container">
+      <h2 id="ds-faq">Acordeão</h2>
+      <p class="ds-intro">Construído com o elemento nativo details: funciona sem JavaScript e é acessível por padrão.</p>
+      <div class="acordeao" style="max-width:720px">
+        <details class="acordeao-item" open>
+          <summary>Onde o espaço começa?</summary>
+          <div class="acordeao-corpo"><p>Pela convenção mais usada, a 100 km de altitude, na chamada Linha de Kármán.</p></div>
+        </details>
+        <details class="acordeao-item">
+          <summary>Por que o céu é preto no espaço?</summary>
+          <div class="acordeao-corpo"><p>No espaço não há ar suficiente para espalhar a luz do Sol.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-fx">
+    <div class="container">
+      <h2 id="ds-fx">Luz, sombra e efeitos</h2>
+      <p class="ds-intro">Camada aditiva (luz.css e efeitos.css). Cada efeito tem uma razão narrativa; nenhum existe só para enfeitar.</p>
+      <div class="ds-linha"><span class="ds-rotulo">Título com degradê</span><div class="secao-cab" style="margin:0"><h2 class="h2 exp">Escalas que ajudam a imaginar.</h2></div></div>
+      <div class="ds-linha"><span class="ds-rotulo">Botão magnético</span><a class="btn btn--primario" href="#conteudo">Passe o mouse perto <span class="seta" aria-hidden="true">→</span></a><span class="ds-code">segue o cursor em até 10 px</span></div>
+      <div class="ds-linha"><span class="ds-rotulo">Cor de acento</span><span class="chip" style="color:#7db4ff">Ignição · azul</span><span class="chip" style="color:#ffc27a">Subida · âmbar</span><span class="chip" style="color:#a78bfa">Desconhecido · violeta</span><span class="chip" style="color:#6fe0d0">Humanidade · água</span><span class="chip" style="color:#ff8a5c">Fronteira · ferrugem</span></div>
+      <ol class="ds-reg" style="margin-top:var(--e-5)">
+        <li><b>Vinheta e grão.</b> Bordas que escurecem e uma textura fina em movimento tiram a limpeza digital da tela. Desligam com movimento reduzido.</li>
+        <li><b>Névoa cósmica.</b> Três manchas enormes e quase invisíveis (violeta, azul, âmbar) com paralaxe lenta atrás do conteúdo.</li>
+        <li><b>Sombras com peso.</b> Cards e números têm luz fina na borda de cima e sombra longa por baixo, como objetos flutuando no escuro.</li>
+        <li><b>Emendas.</b> Nenhuma cena termina em corte seco: cada uma emerge do preto e volta a ele, dentro e fora das bordas.</li>
+        <li><b>Cinema na ignição.</b> Brilho no título, faixa de luz anamórfica, luz quente no chão e tremor de câmera que dependem só da posição da rolagem (vão e voltam).</li>
+        <li><b>Visor.</b> Molduras de canto nas cenas de vídeo e um "vazio" que se fecha enquanto a Terra fica para trás.</li>
+        <li><b>Tipografia em movimento.</b> Faixas gigantes que correm com a rolagem (e inclinam com a velocidade) e um manifesto que acende palavra por palavra.</li>
+        <li><b>Interação.</b> Cursor próprio com estados (link e card), cards que inclinam em 3D, luz que segue o mouse e modo automático (tecla T). A tecla H esconde a interface para gravação.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="ds-sec" aria-labelledby="ds-a11y">
+    <div class="container">
+      <h2 id="ds-a11y">Acessibilidade e desempenho</h2>
+      <p class="ds-intro">Regras que valem para toda peça nova.</p>
+      <ol class="ds-reg">
+        <li><b>Movimento reduzido.</b> A jornada vira uma página estática, com vídeos liberados para assistir com controles.</li>
+        <li><b>Teclado.</b> Menu, linha do tempo e acordeão funcionam com Tab, setas e Esc; o foco é sempre visível.</li>
+        <li><b>Carregamento.</b> Vídeos só são baixados quando a cena está a cerca de duas telas de distância; no celular entram versões menores.</li>
+        <li><b>Contraste e leitura.</b> Texto sobre imagem sempre com degradê escuro por baixo; tamanho mínimo de 11 px apenas para rótulos em mono.</li>
+        <li><b>Transparência.</b> Mídia gerada por IA é sempre identificada, e imagens reais levam crédito.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <div class="rodape-base" style="border-top:0;margin-top:0;padding-top:0">
+      <span>© 2026 Connect Alpha · Sistema de design do conceito NASA · Exploração Espacial</span>
+      <a href="index.html" style="color:var(--c-texto-2)">Voltar ao site</a>
+    </div>
+  </div>
+</footer>
+<script src="js/efeitos.js"></script>
+</body>
+</html>

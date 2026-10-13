@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#02040a">
+<title>NASA · Exploração Espacial · Conceito Connect Alpha</title>
+<meta name="description" content="Conceito independente da Connect Alpha: uma jornada em cinco capítulos, do lançamento ao próximo horizonte, com o vídeo do foguete controlado pela rolagem.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="NASA · Exploração Espacial · Conceito Connect Alpha">
+<meta property="og:description" content="Uma experiência cinematográfica sobre a exploração espacial, criada pela Connect Alpha. Projeto conceitual independente, sem relação oficial com a NASA.">
+<meta property="og:image" content="assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="assets/og.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preload" as="image" href="assets/poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/capitulos.css">
+<link rel="stylesheet" href="css/sistema.css">
+<link rel="stylesheet" href="css/luz.css">
+<link rel="stylesheet" href="css/efeitos.css">
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<canvas id="estrelas" aria-hidden="true"></canvas>
+<div class="nevoa" id="nevoa" aria-hidden="true"><i></i><i></i><i></i></div>
+<a class="pular" href="#missoes">Pular a jornada</a>
+
+<header class="topo" id="topo">
+  <a class="topo-marca" href="#cena" aria-label="Connect Alpha, voltar ao início">Connect <span>Alpha</span></a>
+  <div class="topo-cap" id="topo-cap">
+    <span><b id="cap-num">01</b> · <span id="cap-nome">Ignição</span></span>
+    <nav class="pontos" aria-label="Capítulos da jornada">
+      <a href="#cena" data-cap="cena" aria-label="Capítulo 1: Ignição"></a>
+      <a href="#leave" data-cap="leave" aria-label="Capítulo 2: Deixe a Terra"></a>
+      <a href="#unknown" data-cap="unknown" aria-label="Capítulo 3: Rumo ao desconhecido"></a>
+      <a href="#humanity" data-cap="humanity" aria-label="Capítulo 4: A humanidade além da Terra"></a>
+      <a href="#frontier" data-cap="frontier" aria-label="Capítulo 5: A próxima fronteira"></a>
+    </nav>
+  </div>
+  <nav class="topo-nav" id="topo-nav" aria-label="Principal">
+    <a href="#cena" data-sec="cena">Jornada</a>
+    <a href="#missoes" data-sec="missoes">Missões</a>
+    <a href="#linha" data-sec="linha">Linha do tempo</a>
+    <a href="#numeros" data-sec="numeros">Em números</a>
+    <a href="#perguntas" data-sec="perguntas">Perguntas</a>
+    <a class="topo-cta-menu" href="#contato" data-sec="contato">Fale com a gente</a>
+  </nav>
+  <button class="som" id="som" type="button" aria-pressed="false" title="Liga uma trilha sintetizada que reage à rolagem. Atalho: M"><span class="som-barras" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="som-txt">Som</span></button>
+  <button class="tour" id="tour" type="button" aria-pressed="false" title="Rola o site sozinho. Atalho: T"><i aria-hidden="true"></i><span>Automático</span></button>
+  <a class="btn btn--primario btn--sm topo-cta" href="#contato">Fale com a gente</a>
+  <button class="topo-menu" id="topo-menu" type="button" aria-expanded="false" aria-controls="topo-nav">Menu</button>
+  <div class="topo-prog" aria-hidden="true"><i id="topo-prog"></i></div>
+</header>
+
+<main>
+  <!-- CAPÍTULO 01 · IGNITION — o progresso do vídeo acompanha a rolagem -->
+  <section class="cena" id="cena" aria-labelledby="titulo">
+    <div class="palco" id="palco">
+      <video id="video" class="video" muted playsinline preload="auto" tabindex="-1" aria-hidden="true" poster="assets/poster.jpg"></video>
+      <script>
+        /* cópia só com quadros-chave (rolagem sem engasgo); celular recebe a versão menor; o original fica de reserva */
+        (function () {
+          var v = document.getElementById('video');
+          var pequeno = window.matchMedia('(max-width:820px), (pointer:coarse) and (max-width:1100px)').matches;
+          var lista = pequeno
+            ? ['assets/video/foguete-scrub-m.mp4', 'assets/video/foguete-scrub.mp4']
+            : ['assets/video/foguete-scrub.mp4'];
+          lista.push('Rocket_launching_from_pad_20261013071523.mp4');
+          lista.forEach(function (u) { var s = document.createElement('source'); s.src = u; s.type = 'video/mp4'; v.appendChild(s); });
+        })();
+      </script>
+      <div class="vinheta" aria-hidden="true"></div>
+      <div class="ignicao" id="ignicao" aria-hidden="true"></div>
+      <div class="estria" id="estria" aria-hidden="true"></div>
+
+      <div class="intro" id="intro">
+        <p class="kicker" id="kicker">Connect Alpha apresenta · Capítulo 01</p>
+        <h1 class="titulo" id="titulo"><span class="ln nasa"><span>NASA</span></span><span class="ln sub"><span>Exploração</span></span><span class="ln sub"><span>Espacial</span></span></h1>
+      </div>
+
+      <p class="beat" id="beat-b"><span class="beat-n">01 — Ignição</span>Além do<br>conhecido.</p>
+
+      <div class="relogio" id="relogio" aria-hidden="true">
+        <span class="rel-t" id="rel-t">T−00:01.0</span>
+        <span class="rel-s" id="rel-s">Contagem final</span>
+      </div>
+
+      <div class="indicador" id="indicador" aria-hidden="true">
+        <span>Role para lançar</span>
+        <i></i>
+      </div>
+
+      <div class="cobre" id="cobre" aria-hidden="true"></div>
+      <div class="trilho" aria-hidden="true"><i id="trilho-barra"></i></div>
+      <button class="reproduzir" id="reproduzir" type="button" hidden>Reproduzir vídeo</button>
+
+      <div class="carregando" id="carregando" role="status" aria-live="polite">
+        <i aria-hidden="true"></i>
+        <span id="carregando-txt">Preparando o lançamento</span>
+        <b class="carregando-pct" id="carregando-pct" aria-hidden="true">0%</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 02 · DEIXE A TERRA — vídeo da subida na rolagem, altitude sincronizada -->
+  <section class="leave" id="leave" aria-labelledby="leave-titulo" data-video="espera">
+    <div class="leave-palco">
+      <video id="v-subida" class="cv" muted playsinline preload="none" tabindex="-1" aria-hidden="true" poster="assets/video/subida-poster.jpg"></video>
+      <div class="orbita" id="orbita" aria-hidden="true">
+        <img src="assets/img/orbita-pacifico.jpg" width="1920" height="1078" alt="" decoding="async">
+      </div>
+      <div class="leave-entra" id="leave-entra" aria-hidden="true"></div>
+      <div class="leave-sombra" aria-hidden="true"></div>
+      <div class="leave-vazio" id="leave-vazio" aria-hidden="true"></div>
+
+      <div class="leave-topo">
+        <p class="kicker rv">Capítulo 02</p>
+        <h2 class="h2 exp" id="leave-titulo"><span class="ln"><span>Deixe</span></span><span class="ln"><span>a Terra.</span></span></h2>
+      </div>
+
+      <div class="alt" id="alt">
+        <p class="alt-rot">Altitude</p>
+        <p class="alt-num"><b id="alt-num">0</b><span>km</span></p>
+        <div class="alt-notas" aria-live="off">
+          <p class="alt-nota on" data-n="0">Entre as nuvens: os aviões comerciais cruzam a cerca de 10 km de altitude.</p>
+          <p class="alt-nota" data-n="1">A partir de 100 km, a Linha de Kármán marca a fronteira convencional do espaço.</p>
+          <p class="alt-nota" data-n="2">Cerca de 420 km: a órbita em que a Estação Espacial Internacional circula a Terra.</p>
+        </div>
+      </div>
+
+      <p class="leave-cred" id="leave-cred">Subida: animação gerada por IA · Nascer do sol: foto real da órbita, NASA / ISS</p>
+      <p class="cena-carga" aria-live="polite">Carregando a cena…</p>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 03 · RUMO AO DESCONHECIDO (a): última vista de casa, Lua e eclipse -->
+  <section class="unk" id="unknown" aria-labelledby="unk-titulo">
+    <div class="unk-fixo">
+      <figure class="ultima" id="ultima">
+        <img src="assets/img/orbita-brasil.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+             alt="A Terra vista da órbita à noite, com a curvatura do planeta iluminada pelo nascer do sol e as luzes das cidades brasileiras">
+        <figcaption><span class="mono-t">A última vista de casa</span><span>Cerca de 420 km acima do Brasil · NASA / ISS</span></figcaption>
+      </figure>
+      <div class="unk-titulo" id="unk-titulo-box">
+        <p class="kicker">Capítulo 03</p>
+        <h2 class="h2 exp" id="unk-titulo"><span class="ln"><span>Rumo ao</span></span><span class="ln"><span>desconhecido.</span></span></h2>
+      </div>
+      <div class="ticker" id="ticker" aria-live="polite">
+        <span class="ticker-rot">Agora em vista</span>
+        <span class="ticker-txt" id="ticker-txt">Sistema Terra–Lua</span>
+      </div>
+    </div>
+
+    <div class="unk-placas" id="unk-placas">
+      <figure class="placa placa--foto p-lua" data-v="0.6" data-txt="A face oculta da Lua, vista pela tripulação da Artemis II">
+        <img src="assets/img/hd/art002e021219.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+             alt="Horizonte da face oculta da Lua, cheio de crateras, com a Terra surgindo ao fundo, fotografado pela tripulação da Artemis II">
+        <figcaption><span>Face oculta da Lua</span>Artemis II · NASA · 6 de abril de 2026</figcaption>
+      </figure>
+      <figure class="placa placa--foto p-eclipse" data-v="0.9" data-txt="A Terra, pela janela da cápsula Orion">
+        <img src="assets/img/hd/art002e000191.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+             alt="A Terra vista pela janela da cápsula Orion, cercada por equipamentos da nave, fotografada pelo comandante Reid Wiseman">
+        <figcaption><span>Pela janela da Orion</span>Reid Wiseman · Artemis II · NASA</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 03 (b): a Terra fica pequena, vídeo na rolagem -->
+  <section class="neb" id="afastar" aria-labelledby="afastar-titulo" data-video="espera">
+    <div class="neb-palco">
+      <video id="v-afastar" class="cv" muted playsinline preload="none" tabindex="-1" aria-hidden="true" poster="assets/video/afastar-poster.jpg"></video>
+      <div class="neb-sombra" aria-hidden="true"></div>
+      <div class="neb-texto">
+        <p class="kicker">Visualização artística</p>
+        <h3 class="h3 exp" id="afastar-titulo">A Terra<br>fica pequena.</h3>
+        <p class="peq">Animação gerada por IA: quanto mais longe a gente vai, mais a nossa casa vira um ponto de luz.</p>
+      </div>
+      <p class="cena-carga" aria-live="polite">Carregando a cena…</p>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 03 (c): uma sonda diante de Saturno, vídeo na rolagem -->
+  <section class="neb" id="saturno" aria-labelledby="saturno-titulo" data-video="espera">
+    <div class="neb-palco">
+      <video id="v-saturno" class="cv" muted playsinline preload="none" tabindex="-1" aria-hidden="true" poster="assets/video/saturno-poster.jpg"></video>
+      <div class="neb-sombra neb-sombra--base" aria-hidden="true"></div>
+      <div class="neb-texto">
+        <p class="kicker">Visualização artística</p>
+        <h3 class="h3 exp" id="saturno-titulo">Uma sonda diante<br>de Saturno.</h3>
+        <p class="peq">Animação gerada por IA. Sondas como a Cassini e as Voyager já visitaram o planeta dos anéis.</p>
+      </div>
+      <p class="cena-carga" aria-live="polite">Carregando a cena…</p>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 04 · HUMANITY BEYOND EARTH -->
+  <section class="hum" id="humanity" aria-labelledby="hum-titulo">
+    <p class="hum-fundo" aria-hidden="true">Humanidade</p>
+    <header class="hum-topo">
+      <p class="kicker rv">Capítulo 04</p>
+      <h2 class="h2 exp rv" id="hum-titulo">A humanidade<br>além da<br>Terra.</h2>
+    </header>
+
+    <div class="hum-grade">
+      <figure class="hp hp-a rv rv-img" data-par="-60">
+        <div class="par"><img src="assets/img/hd/GSFC_20171208_Archive_e001653.jpg" width="1280" height="856" loading="lazy" decoding="async"
+             alt="Técnicos e cientistas de macacão branco inspecionam um dos espelhos dourados de voo do Telescópio Webb em uma sala limpa do Goddard"></div>
+        <figcaption><i>04.1</i>Sala limpa · espelho do Webb</figcaption>
+      </figure>
+
+      <div class="hum-texto rv">
+        <p class="lead">Antes de qualquer lançamento existe uma sala silenciosa, uma lista de verificação e alguém que confere tudo mais uma vez.</p>
+        <p class="peq">A exploração espacial é feita por pessoas. O foguete é só a parte que a gente vê subir.</p>
+      </div>
+
+      <figure class="hp hp-b rv rv-img" data-par="40">
+        <div class="par"><img src="assets/img/hd/iss061e065379.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+             alt="O astronauta Andrew Morgan preso à Estação Espacial Internacional durante uma caminhada espacial, com a Terra ao fundo"></div>
+        <figcaption><i>04.2</i>Caminhada espacial · Andrew Morgan</figcaption>
+      </figure>
+
+      <figure class="hp hp-c rv rv-img" data-par="-30">
+        <div class="par"><img src="assets/img/hd/iss039e014976.jpg" width="1275" height="1920" loading="lazy" decoding="async"
+             alt="Retrato do astronauta Steve Swanson de traje espacial durante uma caminhada espacial, com a Terra azul e branca ao fundo"></div>
+        <figcaption><i>04.3</i>Steve Swanson · 2014</figcaption>
+      </figure>
+
+      <figure class="hp hp-d rv rv-img" data-par="50">
+        <div class="par"><img src="assets/img/hd/art002e023575.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+             alt="A Terra e suas nuvens fotografadas por um astronauta da Artemis II, de uma das quatro janelas da cápsula Orion"></div>
+        <figcaption><i>04.4</i>Oasis in the Void · Artemis II</figcaption>
+      </figure>
+
+      <p class="hum-texto2 rv">Por trás de cada missão, alguém que escolheu olhar para cima.</p>
+
+      <figure class="hp hp-e rv rv-img">
+        <div class="par"><img src="assets/img/hd/art002e023175.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+             alt="A Terra como uma esfera azul e branca contra o preto do espaço, vista da cápsula Orion pela tripulação da Artemis II"></div>
+        <figcaption><i>04.5</i>Sphere of Solace · Artemis II</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" id="manifesto" aria-label="Manifesto">
+    <div class="manifesto-palco">
+      <p class="manifesto-txt" id="manifesto-txt" data-fortes="pergunta|horizonte|cima|vai">Toda grande jornada começa com uma pergunta simples: o que existe além do horizonte? A humanidade passou séculos olhando para cima. Agora, ela vai.</p>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO 05 · A PRÓXIMA FRONTEIRA — vídeo da aproximação de Marte na rolagem -->
+  <section class="fro" id="frontier" aria-labelledby="fro-titulo" data-video="espera">
+    <div class="fro-palco">
+      <video id="v-marte" class="cv" muted playsinline preload="none" tabindex="-1" aria-hidden="true" poster="assets/video/marte-poster.jpg"></video>
+      <div class="fro-sombra" aria-hidden="true"></div>
+      <div class="fro-texto" id="fro-texto">
+        <p class="kicker">Capítulo 05</p>
+        <h2 class="h2 exp" id="fro-titulo">A próxima<br>fronteira.</h2>
+        <p class="lead">O que vem depois ainda não foi descoberto.</p>
+      </div>
+      <div class="fro-fade" id="fro-fade" aria-hidden="true"></div>
+      <a class="btn btn--secundario fro-seguir" id="fro-seguir" href="#missoes">Explorar as missões <span class="seta" aria-hidden="true">↓</span></a>
+      <p class="fro-leg" id="fro-leg"><span>Marte</span>≈ 225 milhões de km da Terra, em média · animação gerada por IA</p>
+      <p class="cena-carga" aria-live="polite">Carregando a cena…</p>
+    </div>
+  </section>
+  <!-- MISSÕES -->
+  <section class="secao" id="missoes" aria-labelledby="missoes-t">
+    <div class="container">
+      <header class="secao-cab">
+        <p class="kicker rv">Missões</p>
+        <h2 class="h2 exp rv" id="missoes-t">Seis caminhos para fora da Terra.</h2>
+        <p class="lead rv">Do telescópio que olha para o passado do universo ao sobrevoo da Lua com pessoas a bordo.</p>
+      </header>
+
+      <div class="grade-missoes">
+        <article class="card card--missao card--destaque rv">
+          <div class="card-media">
+            <img src="assets/img/hd/art002e021278.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+                 alt="A Terra em quarto crescente surgindo sobre o horizonte da Lua, vista pela tripulação da Artemis II">
+            <span class="card-credito">NASA · Artemis II</span>
+          </div>
+          <div class="card-corpo">
+            <div class="card-chips"><span class="chip chip--quente chip--ponto">Missão recente</span><span class="chip">Tripulada · 2026</span></div>
+            <h3 class="card-titulo"><a class="card-abre" data-missao="artemis" href="https://www.nasa.gov/mission/artemis-ii/" target="_blank" rel="noopener">Artemis II: de volta à Lua, com gente a bordo</a></h3>
+            <p class="card-texto">Em abril de 2026, quatro astronautas voaram ao redor da Lua no primeiro sobrevoo lunar tripulado em mais de 50 anos. A missão durou pouco mais de 9 dias, do lançamento, em 1º de abril, ao pouso no Pacífico, em 10 de abril.</p>
+            <ul class="equipe"><li><b>Reid Wiseman</b> · NASA</li><li><b>Victor Glover</b> · NASA</li><li><b>Christina Koch</b> · NASA</li><li><b>Jeremy Hansen</b> · CSA</li></ul>
+            <div class="card-rodape"><span class="rotulo">Artemis</span><span class="link-seta">Ver detalhes <span class="seta" aria-hidden="true">→</span></span></div>
+          </div>
+        </article>
+
+        <article class="card card--missao rv">
+          <div class="card-media">
+            <img src="assets/img/missoes/iss.jpg" width="1267" height="1920" loading="lazy" decoding="async"
+                 alt="Estrutura e painéis solares da Estação Espacial Internacional contra o limbo da Terra">
+            <span class="card-credito">NASA</span>
+          </div>
+          <div class="card-corpo">
+            <div class="card-chips"><span class="chip chip--acento">Em órbita</span><span class="chip">Laboratório</span></div>
+            <h3 class="card-titulo"><a class="card-abre" data-missao="iss" href="https://www.nasa.gov/international-space-station/" target="_blank" rel="noopener">Estação Espacial Internacional</a></h3>
+            <p class="card-texto">Habitada sem interrupção desde 2 de novembro de 2000. Orbita a cerca de 400 km de altitude e dá uma volta na Terra em aproximadamente 90 minutos.</p>
+            <div class="card-rodape"><span class="rotulo">Desde 2000</span><span class="link-seta">Detalhes <span class="seta" aria-hidden="true">→</span></span></div>
+          </div>
+        </article>
+
+        <article class="card card--missao rv">
+          <div class="card-media">
+            <img src="assets/img/missoes/webb.jpg" width="1400" height="810" loading="lazy" decoding="async"
+                 alt="Penhascos cósmicos da Nebulosa de Carina em tons de laranja e azul, registrados pelo Telescópio Espacial James Webb">
+            <span class="card-credito">NASA, ESA, CSA, STScI</span>
+          </div>
+          <div class="card-corpo">
+            <div class="card-chips"><span class="chip chip--acento">Observatório</span><span class="chip">2021</span></div>
+            <h3 class="card-titulo"><a class="card-abre" data-missao="webb" href="https://science.nasa.gov/mission/webb/" target="_blank" rel="noopener">Telescópio Espacial James Webb</a></h3>
+            <p class="card-texto">Lançado em 25 de dezembro de 2021, tem um espelho de 6,5 metros formado por 18 segmentos hexagonais, o maior já enviado ao espaço. Observa em infravermelho.</p>
+            <div class="card-rodape"><span class="rotulo">Infravermelho</span><span class="link-seta">Detalhes <span class="seta" aria-hidden="true">→</span></span></div>
+          </div>
+        </article>
+
+        <article class="card card--missao rv">
+          <div class="card-media">
+            <img src="assets/img/missoes/hubble.jpg" width="1400" height="1312" loading="lazy" decoding="async"
+                 alt="Os Pilares da Criação em infravermelho, colunas escuras de gás e poeira entre milhares de estrelas">
+            <span class="card-credito">NASA, ESA, Hubble</span>
+          </div>
+          <div class="card-corpo">
+            <div class="card-chips"><span class="chip chip--acento">Observatório</span><span class="chip">1990</span></div>
+            <h3 class="card-titulo"><a class="card-abre" data-missao="hubble" href="https://science.nasa.gov/mission/hubble/" target="_blank" rel="noopener">Telescópio Espacial Hubble</a></h3>
+            <p class="card-texto">Lançado em 24 de abril de 1990 pelo ônibus espacial Discovery. Já registrou imagens icônicas, como os Pilares da Criação.</p>
+            <div class="card-rodape"><span class="rotulo">Desde 1990</span><span class="link-seta">Detalhes <span class="seta" aria-hidden="true">→</span></span></div>
+          </div>
+        </article>
+
+        <article class="card card--missao rv">
+          <div class="card-media">
+            <img src="assets/img/missoes/perseverance.jpg" width="1400" height="1308" loading="lazy" decoding="async"
+                 alt="Autorretrato do rover Perseverance na superfície avermelhada de Marte">
+            <span class="card-credito">NASA / JPL-Caltech</span>
+          </div>
+          <div class="card-corpo">
+            <div class="card-chips"><span class="chip chip--acento">Rover</span><span class="chip">Marte · 2021</span></div>
+            <h3 class="card-titulo"><a class="card-abre" data-missao="perseverance" href="https://science.nasa.gov/mission/mars-2020-perseverance/" target="_blank" rel="noopener">Perseverance</a></h3>
+            <p class="card-texto">Pousou na Cratera Jezero em 18 de fevereiro de 2021. Estuda a geologia marciana, procura sinais de vida antiga e coleta amostras de rocha e solo.</p>
+            <div class="card-rodape"><span class="rotulo">Cratera Jezero</span><span class="link-seta">Detalhes <span class="seta" aria-hidden="true">→</span></span></div>
+          </div>
+        </article>
+
+        <article class="card card--missao rv">
+          <div class="card-media">
+            <img src="assets/img/missoes/voyager.jpg" width="1400" height="1384" loading="lazy" decoding="async"
+                 alt="Fotografia da Voyager 1 em que a Terra aparece como um minúsculo ponto de luz azul pálido em meio a faixas de luz solar espalhada">
+            <span class="card-credito">NASA / JPL-Caltech</span>
+          </div>
+          <div class="card-corpo">
+            <div class="card-chips"><span class="chip chip--acento">Sonda</span><span class="chip">1977</span></div>
+            <h3 class="card-titulo"><a class="card-abre" data-missao="voyager" href="https://science.nasa.gov/mission/voyager/" target="_blank" rel="noopener">Voyager 1: o ponto azul pálido</a></h3>
+            <p class="card-texto">Lançada em 5 de setembro de 1977, entrou no espaço interestelar em agosto de 2012 e ainda transmite dados. Em 1990, fotografou a Terra como um pontinho de luz.</p>
+            <div class="card-rodape"><span class="rotulo">Interestelar</span><span class="link-seta">Detalhes <span class="seta" aria-hidden="true">→</span></span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- faixa gigante de nomes -->
+  <div class="faixa-missoes" aria-hidden="true">
+    <div class="faixa-linha"><span>Artemis<i>•</i></span><span>ISS<i>•</i></span><span>Webb<i>•</i></span><span class="cheio">Hubble<i>•</i></span><span>Perseverance<i>•</i></span><span>Voyager<i>•</i></span><span>Artemis<i>•</i></span><span>ISS<i>•</i></span><span>Webb<i>•</i></span><span class="cheio">Hubble<i>•</i></span><span>Perseverance<i>•</i></span><span>Voyager<i>•</i></span></div>
+    <div class="faixa-linha"><span>Apollo 11<i>•</i></span><span class="cheio">Curiosity<i>•</i></span><span>Cassini<i>•</i></span><span>Orion<i>•</i></span><span>Jezero<i>•</i></span><span>Kármán<i>•</i></span><span>Apollo 11<i>•</i></span><span class="cheio">Curiosity<i>•</i></span><span>Cassini<i>•</i></span><span>Orion<i>•</i></span><span>Jezero<i>•</i></span><span>Kármán<i>•</i></span></div>
+  </div>
+
+  <!-- LINHA DO TEMPO -->
+  <section class="secao" id="linha" aria-labelledby="linha-t">
+    <div class="container linha-topo">
+      <header class="secao-cab">
+        <p class="kicker rv">Linha do tempo</p>
+        <h2 class="h2 exp rv" id="linha-t">Marcos de uma jornada coletiva.</h2>
+      </header>
+      <div class="linha-controles" aria-label="Controles da linha do tempo">
+        <button class="btn btn--icone" id="linha-ant" type="button" aria-label="Marco anterior"><span aria-hidden="true">←</span></button>
+        <button class="btn btn--icone" id="linha-prox" type="button" aria-label="Próximo marco"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+    <ol class="linha" id="linha-trilha" tabindex="0" aria-label="Linha do tempo da exploração espacial. Use as setas do teclado para navegar.">
+      <li class="marco"><span class="marco-ano">1958</span><span class="marco-data">29 de julho</span><h3>Nasce a NASA</h3><p>A Lei Nacional de Aeronáutica e Espaço cria a agência espacial civil dos Estados Unidos.</p></li>
+      <li class="marco"><span class="marco-ano">1969</span><span class="marco-data">20 de julho</span><h3>Apollo 11 chega à Lua</h3><p>Neil Armstrong e Buzz Aldrin pousam e se tornam as primeiras pessoas a caminhar na superfície lunar.</p></li>
+      <li class="marco"><span class="marco-ano">1977</span><span class="marco-data">5 de setembro</span><h3>Voyager 1 parte</h3><p>A sonda inicia uma viagem que a levaria, décadas depois, para além da influência do Sol.</p></li>
+      <li class="marco"><span class="marco-ano">1990</span><span class="marco-data">24 de abril</span><h3>Hubble vai ao espaço</h3><p>O telescópio é levado ao espaço pelo ônibus espacial Discovery e muda a forma de ver o cosmos.</p></li>
+      <li class="marco"><span class="marco-ano">2000</span><span class="marco-data">2 de novembro</span><h3>Presença humana contínua</h3><p>A primeira tripulação chega à Estação Espacial Internacional, que segue habitada desde então.</p></li>
+      <li class="marco"><span class="marco-ano">2012</span><span class="marco-data">Agosto</span><h3>Curiosity em Marte; Voyager 1 no espaço interestelar</h3><p>No mesmo mês, um rover pousa na Cratera Gale e a Voyager 1 cruza a fronteira da heliosfera.</p></li>
+      <li class="marco"><span class="marco-ano">2021</span><span class="marco-data">Fevereiro e dezembro</span><h3>Perseverance e Webb</h3><p>O rover pousa na Cratera Jezero em 18 de fevereiro; o James Webb é lançado em 25 de dezembro.</p></li>
+      <li class="marco marco--destaque"><span class="marco-ano">2026</span><span class="marco-data">1 a 10 de abril</span><h3>Artemis II sobrevoa a Lua</h3><p>Quatro astronautas completam o primeiro sobrevoo lunar tripulado em mais de 50 anos.</p></li>
+    </ol>
+  </section>
+
+  <!-- EM NÚMEROS -->
+  <section class="secao" id="numeros" aria-labelledby="numeros-t">
+    <div class="container">
+      <header class="secao-cab">
+        <p class="kicker rv">Em números</p>
+        <h2 class="h2 exp rv" id="numeros-t">Escalas que ajudam a imaginar.</h2>
+      </header>
+      <div class="grade-stats">
+        <div class="stat rv">
+          <p class="stat-num"><b data-alvo="25" data-prefixo="+">+25</b><span>anos</span></p>
+          <p class="stat-txt">de presença humana contínua em órbita, desde 2 de novembro de 2000, na Estação Espacial Internacional.</p>
+        </div>
+        <div class="stat rv">
+          <p class="stat-num"><b data-alvo="90">90</b><span>min · aprox.</span></p>
+          <p class="stat-txt">é o tempo aproximado que a Estação leva para dar uma volta completa na Terra.</p>
+        </div>
+        <div class="stat rv">
+          <p class="stat-num"><b data-alvo="6.5" data-dec="1">6,5</b><span>m</span></p>
+          <p class="stat-txt">de largura tem o espelho do James Webb, o maior já lançado ao espaço.</p>
+        </div>
+        <div class="stat rv">
+          <p class="stat-num"><b data-alvo="384400">384.400</b><span>km · média</span></p>
+          <p class="stat-txt">é a distância média entre a Terra e a Lua.</p>
+        </div>
+        <div class="stat rv">
+          <p class="stat-num"><b data-alvo="9">9</b><span>dias</span></p>
+          <p class="stat-txt">durou a Artemis II, do lançamento ao pouso: 9 dias, 1 hora e 32 minutos.</p>
+        </div>
+      </div>
+      <p class="nota-fonte rv">Valores aproximados, conferidos em páginas oficiais da NASA. A altitude da Estação varia ao longo do tempo.</p>
+    </div>
+  </section>
+
+  <!-- PERGUNTAS -->
+  <section class="secao" id="perguntas" aria-labelledby="perguntas-t">
+    <div class="container faq-layout">
+      <header class="secao-cab">
+        <p class="kicker rv">Perguntas frequentes</p>
+        <h2 class="h2 exp rv" id="perguntas-t">O que as pessoas mais perguntam.</h2>
+      </header>
+      <div class="acordeao rv">
+        <details class="acordeao-item" name="faq">
+          <summary>Onde o espaço começa?</summary>
+          <div class="acordeao-corpo"><p>Pela convenção mais usada, a 100 km de altitude, na chamada Linha de Kármán. Algumas instituições adotam outros limites, como 80 km (50 milhas).</p></div>
+        </details>
+        <details class="acordeao-item" name="faq">
+          <summary>Quanto tempo leva para chegar à Lua?</summary>
+          <div class="acordeao-corpo"><p>Cerca de 3 dias, como nas missões Apollo. A Artemis II fez um sobrevoo completo, de ida e volta, em pouco mais de 9 dias.</p></div>
+        </details>
+        <details class="acordeao-item" name="faq">
+          <summary>Por que o céu é preto no espaço?</summary>
+          <div class="acordeao-corpo"><p>Na Terra, a atmosfera espalha a luz do Sol e deixa o céu azul. No espaço não há ar suficiente para fazer isso, então o fundo é escuro, mesmo com o Sol brilhando.</p></div>
+        </details>
+        <details class="acordeao-item" name="faq">
+          <summary>O que é uma nebulosa?</summary>
+          <div class="acordeao-corpo"><p>Uma nuvem de gás e poeira no espaço. Algumas são berçários onde nascem estrelas; outras são restos de estrelas que chegaram ao fim da vida.</p></div>
+        </details>
+        <details class="acordeao-item" name="faq">
+          <summary>As imagens deste site são reais?</summary>
+          <div class="acordeao-corpo"><p>As fotografias são registros reais do acervo público da NASA e de parceiros, com crédito em cada imagem. As animações em vídeo (o foguete, a subida, a Terra se afastando, a sonda diante de Saturno e Marte) foram geradas com inteligência artificial e estão sempre identificadas.</p></div>
+        </details>
+        <details class="acordeao-item" name="faq">
+          <summary>Este site é oficial da NASA?</summary>
+          <div class="acordeao-corpo"><p>Não. É um conceito independente criado pela Connect Alpha para demonstrar direção de arte e desenvolvimento web. Não tem patrocínio, contrato nem aprovação da NASA.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO / SOBRE O CONCEITO -->
+  <section class="secao" id="contato" aria-labelledby="contato-t">
+    <div class="container">
+      <div class="cta rv">
+        <p class="kicker">Por trás do conceito</p>
+        <h2 class="h2 exp" id="contato-t">Uma jornada assim para a sua marca.</h2>
+        <p class="lead">Direção de arte, narrativa na rolagem e desenvolvimento web de alto nível, com desempenho e acessibilidade desde o primeiro rascunho.</p>
+        <div class="cta-acoes">
+          <a class="btn btn--primario" href="https://wa.me/5535998872633?text=Oi!%20Vi%20o%20conceito%20da%20NASA%20e%20quero%20uma%20experi%C3%AAncia%20assim." target="_blank" rel="noopener">Quero uma experiência assim <span class="seta" aria-hidden="true">→</span></a>
+          <a class="btn btn--secundario" href="design-system.html">Ver o sistema de design</a>
+        </div>
+        <div class="grade-servicos">
+          <div class="servico"><b>01</b><h3>Direção de arte</h3><p>Identidade visual, tipografia e imagens tratadas com um único ponto de vista.</p></div>
+          <div class="servico"><b>02</b><h3>Narrativa em rolagem</h3><p>Vídeo, animação e conteúdo que avançam no ritmo de quem navega.</p></div>
+          <div class="servico"><b>03</b><h3>Desempenho e acessibilidade</h3><p>Carregamento leve, teclado, movimento reduzido e funcionamento no celular.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape" id="rodape">
+  <div class="container">
+    <div class="rodape-grade">
+      <div>
+        <p class="rodape-marca">Connect <span>Alpha</span></p>
+        <p class="rodape-sobre">Conceito independente de experiência web cinematográfica sobre a exploração espacial. Criado pela Connect Alpha.</p>
+      </div>
+      <nav aria-label="Explorar">
+        <h2>Explorar</h2>
+        <ul>
+          <li><a href="#cena">A jornada</a></li>
+          <li><a href="#missoes">Missões</a></li>
+          <li><a href="#linha">Linha do tempo</a></li>
+          <li><a href="#numeros">Em números</a></li>
+          <li><a href="#perguntas">Perguntas</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Na NASA">
+        <h2>Na NASA</h2>
+        <ul>
+          <li><a href="https://www.nasa.gov/" target="_blank" rel="noopener">nasa.gov</a></li>
+          <li><a href="https://www.nasa.gov/mission/artemis-ii/" target="_blank" rel="noopener">Artemis II</a></li>
+          <li><a href="https://science.nasa.gov/mission/webb/" target="_blank" rel="noopener">Telescópio Webb</a></li>
+          <li><a href="https://images.nasa.gov/" target="_blank" rel="noopener">Biblioteca de imagens</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Conceito">
+        <h2>Conceito</h2>
+        <ul>
+          <li><a href="design-system.html">Sistema de design</a></li>
+          <li><a href="#contato">Fale com a gente</a></li>
+          <li><a href="https://wa.me/5535998872633" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="aviso">
+      <img class="aviso-logo" src="Logo/29090066_159271188110124_1152068159029641216_n.jpg" width="150" height="150" alt="" loading="lazy" decoding="async">
+      <p><b>Projeto conceitual independente da Connect Alpha.</b> Este não é um site oficial da NASA e não tem patrocínio, contrato ou aprovação dela. O nome e o emblema da NASA pertencem à NASA. Todas as fotografias vêm do acervo público da NASA (images.nasa.gov) e de parceiros (ESA, CSA, STScI, JPL-Caltech), com crédito e identificação em cada imagem. Os vídeos são animações geradas com IA. Os valores de altitude e distância são aproximados.</p>
+    </div>
+
+    <p class="rodape-gigante" aria-hidden="true"><b>Connect</b> Alpha</p>
+
+    <div class="rodape-base">
+      <span>© 2026 Connect Alpha · Conceito criativo</span>
+      <span>Feito com HTML, CSS e JavaScript puros.</span>
+    </div>
+  </div>
+</footer>
+
+
+<dialog class="missao" id="missao" aria-labelledby="missao-t">
+  <div class="missao-corpo">
+    <button class="missao-x" id="missao-x" type="button" aria-label="Fechar painel"><span aria-hidden="true">✕</span></button>
+    <div class="missao-img">
+      <img id="missao-img" src="" alt="" width="1400" height="934">
+      <span class="card-credito" id="missao-cred"></span>
+    </div>
+    <div class="missao-txt">
+      <p class="kicker" id="missao-k"></p>
+      <h2 class="h3 exp" id="missao-t"></h2>
+      <p class="lead" id="missao-r"></p>
+      <dl class="fatos" id="missao-f"></dl>
+      <div class="missao-acoes">
+        <a class="btn btn--primario" id="missao-link" href="#" target="_blank" rel="noopener">Ver no site da NASA <span class="seta" aria-hidden="true">↗</span></a>
+        <div class="missao-nav">
+          <button class="btn btn--icone" id="missao-ant" type="button" aria-label="Missão anterior"><span aria-hidden="true">←</span></button>
+          <button class="btn btn--icone" id="missao-prox" type="button" aria-label="Próxima missão"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<div class="vinheta-global" aria-hidden="true"></div>
+<div class="grao" aria-hidden="true"></div>
+<div class="luz-cursor" id="luz-cursor" aria-hidden="true"></div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="js/cena.js"></script>
+<script src="js/scrub.js"></script>
+<script src="js/efeitos.js"></script>
+<script src="js/site.js"></script>
+<script src="js/pagina.js"></script>
+<script src="js/som.js"></script>
+</body>
+</html>

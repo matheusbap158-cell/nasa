@@ -1,0 +1,178 @@
+/* Capítulos 02 a 05, revelações e rodapé. A mecânica do vídeo (capítulo 01) está em style.css e js/cena.js. */
+
+/* ---------- revelações (só existem se o JS carregou) ---------- */
+html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+html.js .rv.on{opacity:1;transform:none}
+html.js .rv-img .par{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s var(--ease)}
+html.js .rv-img.on .par{clip-path:inset(0 0 0 0)}
+html.js .rv-img figcaption{opacity:0;transition:opacity .8s ease .5s}
+html.js .rv-img.on figcaption{opacity:1}
+
+/* ---------- cenas de vídeo na rolagem (02, 03b, 05) ---------- */
+.cv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;background:var(--void)}
+.cena-carga{position:absolute;left:50%;bottom:max(26px,env(safe-area-inset-bottom));transform:translateX(-50%);margin:0;z-index:3;font-family:var(--mono);font-size:.6875rem;letter-spacing:.3em;text-transform:uppercase;color:var(--suave);opacity:0;transition:opacity .4s ease;pointer-events:none;white-space:nowrap}
+.cena-carga.on{opacity:1}
+.h3{margin:0;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.98;font-size:clamp(1.7rem,4.2vw,4.4rem)}
+
+/* ---------- 02 · Deixe a Terra ---------- */
+.leave{height:500vh;height:500svh}
+.leave-palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--void)}
+.leave-entra{position:absolute;left:0;right:0;top:0;height:46vh;height:46svh;pointer-events:none;z-index:1;background:linear-gradient(180deg,var(--deep) 0%,rgba(10,27,60,.82) 28%,rgba(10,27,60,0) 100%);will-change:opacity}
+.orbita{position:absolute;inset:0;opacity:0;transform-origin:30% 55%;will-change:opacity,transform}
+.orbita img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 56%}
+.leave-sombra{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(60% 55% at 14% 16%,rgba(2,4,10,.62),rgba(2,4,10,0) 72%),
+    linear-gradient(0deg,rgba(2,4,10,.7) 0%,rgba(2,4,10,0) 42%)}
+.leave-topo{position:absolute;z-index:2;left:var(--margem);top:max(11svh,80px);will-change:transform}
+.leave-topo .h2{font-size:clamp(2.4rem,7vw,7.2rem)}
+
+.alt{position:absolute;right:var(--margem);bottom:max(40px,6svh);width:min(46vw,640px);text-align:right}
+.alt-rot{margin:0;font-family:var(--mono);font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--suave)}
+.alt-num{margin:0;display:flex;justify-content:flex-end;align-items:baseline;gap:.35em;line-height:.9}
+.alt-num b{font-weight:800;font-stretch:125%;letter-spacing:-.04em;font-size:clamp(4.6rem,15vw,15rem);font-variant-numeric:tabular-nums;color:var(--branco)}
+.alt-num span{font-family:var(--mono);font-size:clamp(.9rem,1.6vw,1.5rem);letter-spacing:.2em;text-transform:uppercase;color:var(--azul)}
+.alt-notas{position:relative;min-height:5.6em;margin-top:clamp(10px,1.6vh,18px)}
+.alt-nota{position:absolute;right:0;top:0;margin:0;max-width:34ch;font-size:clamp(.875rem,1.05vw,1rem);line-height:1.45;color:var(--suave);opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.alt-nota.on{opacity:1;transform:none}
+.leave-cred{position:absolute;left:var(--margem);bottom:max(26px,env(safe-area-inset-bottom));margin:0;font-family:var(--mono);font-size:.6875rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tenue);opacity:0;transition:opacity .8s ease}
+.leave-cred.on{opacity:1}
+
+/* ---------- 03 · Into the Unknown ---------- */
+.unk{height:400vh;height:400svh}
+.tel{height:450vh;height:450svh}
+.unk-fixo{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;z-index:3;pointer-events:none}
+.ultima{position:absolute;inset:0;will-change:opacity,transform}
+.ultima img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.ultima::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,4,10,.7) 0%,rgba(2,4,10,0) 38%)}
+.ultima figcaption{position:absolute;z-index:1;left:var(--margem);bottom:max(32px,6svh);display:flex;flex-direction:column;gap:8px;font-size:clamp(.875rem,1.05vw,1rem);color:var(--suave)}
+.unk-titulo{position:absolute;left:var(--margem);top:max(11svh,80px);opacity:0;will-change:opacity,transform}
+.unk-titulo .h2{font-size:clamp(2.4rem,7vw,7.2rem)}
+.ticker{position:absolute;left:var(--margem);bottom:max(26px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:6px;opacity:0;transition:opacity .6s ease}
+.ticker.on{opacity:1}
+.ticker-rot{font-family:var(--mono);font-size:.6875rem;letter-spacing:.28em;text-transform:uppercase;color:var(--tenue)}
+.ticker-txt{font-family:var(--mono);font-size:clamp(.8125rem,1.1vw,1rem);letter-spacing:.06em;color:var(--branco);transition:opacity .25s ease}
+.ticker-txt.troca{opacity:0}
+
+.unk-placas{position:absolute;left:0;right:0;top:0;height:100%;z-index:2;pointer-events:none}
+.placa{position:absolute;margin:0;will-change:transform}
+.placa img{display:block;width:100%;height:auto;mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(closest-side,#000 46%,transparent 100%);mask-image:radial-gradient(closest-side,#000 46%,transparent 100%)}
+.placa figcaption{display:flex;flex-direction:column;gap:2px;margin-top:clamp(2px,1vw,10px);padding:0 8%;font-size:.8125rem;color:var(--suave)}
+.placa figcaption span{font-family:var(--mono);font-size:.6875rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--branco)}
+.p-lua{top:196vh;top:196svh;right:10vw;width:clamp(220px,30vw,500px)}
+.p-eclipse{top:285vh;top:285svh;left:6vw;width:clamp(300px,54vw,900px)}
+.p-neb-a{top:118vh;top:118svh;right:2vw;width:clamp(280px,48vw,800px)}
+.p-espiral{top:200vh;top:200svh;left:10vw;width:clamp(260px,42vw,700px)}
+.p-anel{top:285vh;top:285svh;right:14vw;width:clamp(200px,32vw,520px)}
+.p-pilar{top:345vh;top:345svh;left:34vw;width:clamp(220px,34vw,560px)}
+
+/* 03b · voo por uma nebulosa */
+.neb{height:460vh;height:460svh}
+.neb-palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--void)}
+.neb-sombra{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(55% 50% at 16% 82%,rgba(2,4,10,.7),rgba(2,4,10,0) 72%),
+  linear-gradient(0deg,rgba(2,4,10,.45) 0%,rgba(2,4,10,0) 30%)}
+.neb-texto{position:absolute;left:var(--margem);bottom:max(48px,9svh);max-width:min(44ch,80vw);will-change:opacity,transform}
+.neb-texto .h3{margin-top:2px}
+.neb-texto .peq{margin-top:14px;max-width:44ch}
+.tel-fixo{pointer-events:none}
+
+/* ---------- 04 · Humanity beyond Earth ---------- */
+.hum{padding:clamp(100px,20vh,220px) var(--margem) clamp(100px,18vh,200px);overflow:hidden}
+.hum-fundo{position:absolute;left:-2vw;top:clamp(40px,8vh,100px);margin:0;font-weight:800;font-stretch:125%;text-transform:uppercase;letter-spacing:-.04em;line-height:.8;font-size:clamp(5rem,22vw,22rem);color:transparent;-webkit-text-stroke:1px rgba(242,245,251,.08);pointer-events:none;white-space:nowrap}
+.hum-topo{position:relative;max-width:min(62vw,900px)}
+.hum-grade{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,2vw,32px);row-gap:clamp(48px,10vh,120px);margin-top:clamp(40px,8vh,100px);align-items:start}
+.hp .par{overflow:hidden;background:#05070d}
+.hp img{display:block;width:100%;height:auto}
+.hp figcaption{display:flex;gap:12px;margin-top:12px;font-family:var(--mono);font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--suave)}
+.hp figcaption i{font-style:normal;color:var(--azul)}
+.hp-a{grid-column:8 / span 5;grid-row:1;margin-top:clamp(-220px,-16vh,-60px)}
+.hum-texto{grid-column:1 / span 5;grid-row:1;align-self:end}
+.hp-b{grid-column:2 / span 4;grid-row:2}
+.hp-c{grid-column:7 / span 3;grid-row:2;margin-top:clamp(40px,12vh,160px)}
+.hp-d{grid-column:10 / span 3;grid-row:2;margin-top:clamp(0px,4vh,60px)}
+.hum-texto2{grid-column:1 / span 4;grid-row:3;align-self:center;margin:0;max-width:22ch;font-size:clamp(1.25rem,2.1vw,2rem);line-height:1.25;font-weight:600;font-stretch:112%}
+.hp-e{grid-column:6 / span 4;grid-row:3}
+
+/* ---------- 05 · A próxima fronteira ---------- */
+.fro{height:520vh;height:520svh}
+.fro-palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--void)}
+.fro-sombra{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(55% 55% at 12% 14%,rgba(2,4,10,.55),rgba(2,4,10,0) 72%),
+  linear-gradient(0deg,rgba(2,4,10,.6) 0%,rgba(2,4,10,0) 26%)}
+.fro-texto{position:absolute;left:var(--margem);top:max(11svh,80px);max-width:min(60vw,820px);opacity:0;will-change:opacity,transform}
+.fro .h2{font-size:clamp(2.6rem,7.4vw,7.6rem)}
+.fro-leg{position:absolute;z-index:2;left:var(--margem);bottom:max(30px,5svh);margin:0;display:flex;flex-direction:column;gap:4px;font-size:.8125rem;color:var(--suave);opacity:0}
+.fro-leg span{font-family:var(--mono);font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--branco)}
+
+/* ---------- rodapé ---------- */
+.rodape{border-top:1px solid var(--linha);background:rgba(2,4,10,.82);padding:clamp(36px,7vh,72px) var(--margem) max(32px,env(safe-area-inset-bottom))}
+.rodape-in{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.assina{display:flex;align-items:center;gap:16px}
+.assina-logo{width:auto;height:46px;mix-blend-mode:lighten}
+.assina-t{margin:0;font-family:var(--mono);font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tenue)}
+.assina-n{margin:4px 0 0;font-weight:800;font-stretch:125%;font-size:1.125rem;letter-spacing:.16em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 24px;border-radius:999px;border:1px solid rgba(242,245,251,.4);color:var(--branco);text-decoration:none;font-size:.8125rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:background .25s,border-color .25s,color .25s}
+.btn:hover{background:var(--branco);border-color:var(--branco);color:#02040a}
+.aviso{display:flex;gap:16px;align-items:flex-start;margin-top:clamp(28px,5vh,48px);padding-top:clamp(20px,3vh,28px);border-top:1px solid var(--linha)}
+.aviso-logo{flex:none;width:40px;height:40px;border-radius:50%;object-fit:cover;opacity:.9}
+.aviso p{margin:0;max-width:92ch;font-size:.75rem;line-height:1.6;color:var(--tenue)}
+.aviso b{font-weight:600;color:var(--suave)}
+
+/* ---------- modo sem rolagem controlada (movimento reduzido ou falha) ---------- */
+html.sem-mov .leave,html.sem-mov .unk,html.sem-mov .neb,html.sem-mov .tel,html.sem-mov .fro{height:auto}
+html.sem-mov .neb-palco,html.sem-mov .fro-palco{position:relative;height:auto;min-height:100svh}
+html.sem-mov .fro-texto,html.sem-mov .fro-leg{opacity:1}
+html.sem-mov .fro-texto{position:absolute}
+html.sem-mov .cena-carga{display:none}
+html.sem-mov .leave-palco{position:relative;min-height:100svh}
+html.sem-mov .orbita{opacity:1}
+html.sem-mov .leave-entra{display:none}
+html.sem-mov .leave-cred{opacity:1}
+html.sem-mov .unk-fixo{position:relative;height:auto;min-height:70svh}
+html.sem-mov .tel-fixo{min-height:0}
+html.sem-mov .tel-titulo{padding-top:clamp(40px,8vh,100px)}
+html.sem-mov .ultima{position:relative;height:70svh}
+html.sem-mov .unk-titulo{position:relative;opacity:1;left:auto;top:auto;padding:clamp(40px,8vh,100px) var(--margem) 0}
+html.sem-mov .unk-placas{position:relative;height:auto;display:grid;gap:48px;padding:48px var(--margem)}
+html.sem-mov .placa{position:relative;top:auto!important;left:auto!important;right:auto!important;width:min(520px,100%)!important}
+html.sem-mov .ticker{display:none}
+html.sem-mov .rv,html.sem-mov .rv-img .par,html.sem-mov .rv-img figcaption{opacity:1!important;transform:none!important;clip-path:none!important}
+
+/* ---------- telas menores ---------- */
+@media (max-width:900px){
+  .alt{width:auto;left:var(--margem)}
+  .alt-num{justify-content:flex-start}
+  .alt{text-align:left}
+  .alt-nota{left:0;right:auto}
+  .leave-cred{display:none}
+  .hum-topo{max-width:none}
+  .hum-grade{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .hp-a{grid-column:3 / span 4;grid-row:1;margin-top:0}
+  .hum-texto{grid-column:1 / span 6;grid-row:2;align-self:start}
+  .hp-b{grid-column:1 / span 4;grid-row:3}
+  .hp-c{grid-column:3 / span 4;grid-row:4;margin-top:0}
+  .hp-d{grid-column:1 / span 3;grid-row:5;margin-top:0}
+  .p-lua{right:6vw;width:46vw}
+  .p-eclipse{left:4vw;width:84vw}
+  .p-neb-a{right:0;width:78vw}
+  .p-espiral{left:6vw;width:68vw}
+  .p-anel{right:8vw;width:50vw}
+  .p-pilar{left:20vw;width:54vw}
+  .fro-texto{max-width:none;right:var(--margem);top:calc(max(7svh,60px) + env(safe-area-inset-top))}
+  .fro-leg{right:var(--margem)}
+  #v-marte{object-position:78% 60%}
+  .hum-texto2{grid-column:1 / span 6;grid-row:6;max-width:none}
+  .hp-e{grid-column:3 / span 4;grid-row:7}
+}
+@media (max-width:640px){
+  .h2,.leave-topo .h2,.unk-titulo .h2,.fro .h2{font-size:clamp(1.55rem,7.4vw,3rem)}
+}
+@media (max-width:480px){
+  .rodape-in{flex-direction:column;align-items:flex-start}
+  .btn{width:100%;justify-content:space-between}
+}
+@media (prefers-reduced-motion:reduce){
+  html.js .rv,html.js .rv-img .par,html.js .rv-img figcaption{transition:none}
+}
